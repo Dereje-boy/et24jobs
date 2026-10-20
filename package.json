@@ -1,0 +1,29 @@
+{
+  "name": "etjobs.com",
+  "version": "1.0.0",
+  "description": "The fullstack app created to post jobs on it's website, telegram and facebook channels",
+  "license": "ISC",
+  "author": "Dere-Boy",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "create-admin": "node scripts/createAdmin.js",
+    "migrate-attachments": "node scripts/addAttachmentStatus.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1153.0",
+    "@aws-sdk/s3-request-presigner": "3.1153.0",
+    "bcryptjs": "^3.0.3",
+    "connect-session-sequelize": "^8.0.6",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "multer": "^2.4.0",
+    "mysql2": "^3.23.3",
+    "sequelize": "^6.37.8"
+  }
+}

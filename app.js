@@ -1,0 +1,245 @@
+//mendatory imports
+require("dotenv").config();
+const express = require("express");
+const { engine } = require("express-handlebars");
+const session = require("express-session");
+const cors = require("cors");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+
+const app = express();
+app.use(cors());
+
+// --- Deadline date helpers ------------------------------------------------
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+// Normalizes a deadline ("YYYY-MM-DD" string or Date) to local midnight so
+// DATEONLY values (parsed as UTC midnight) don't shift the calendar day.
+const normalizeDate = (value) => {
+  if (!value) return null;
+  if (value instanceof Date) {
+    return new Date(value.getFullYear(), value.getMonth(), value.getDate());
+  }
+  const match = String(value)
+    .trim()
+    .match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (match) {
+    return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  }
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime())
+    ? null
+    : new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+};
+
+const today = () => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+};
+
+app.engine(
+  "handlebars",
+  engine({
+    extname: ".handlebars",
+
+    helpers: {
+      eq: (a, b) => a === b,
+
+      // Loose equality for comparing submitted form strings with model
+      // numbers (e.g. formData.categoryId "3" vs category.id 3).
+      eqLoose: (a, b) => String(a) === String(b),
+      ifEquals: function (a, b, options) {
+        return a === b ? options.fn(this) : options.inverse(this);
+      },
+
+      // Returns a unless it is empty/null/undefined, then b. Used by the
+      // edit form to prefer submitted formData (after a validation failure)
+      // over the stored job values (first render).
+      coalesce: (a, b) => (a === undefined || a === null || a === "" ? b : a),
+
+      // Safe-to-render text for inline JS attributes (HTML entity escaping
+      // is applied by Handlebars itself for attribute values).
+      // Used by admin/entityList.handlebars for the delete confirm().
+      safeConfirmText: (value) =>
+        String(value)
+          .replace(/\\/g, "")
+          .replace(/['"`]/g, "")
+          .replace(/[\r\n]+/g, " "),
+
+      // JSON.stringify for templates. Handlebars escapes the output, so it
+      // is safe inside <script> tags: "</script>" in a value becomes
+      // \u003C\u002Fscript\u003E and cannot terminate the script block.
+      json: (value) => JSON.stringify(value ?? null),
+
+      // True when the deadline date has passed (date-only comparison)
+      isExpired: (deadline) => {
+        const d = normalizeDate(deadline);
+        return d !== null && today() > d;
+      },
+
+      // Whole days between today and the deadline (0 = closes today)
+      daysRemaining: (deadline) => {
+        const d = normalizeDate(deadline);
+        return d === null ? 0 : Math.round((d - today()) / DAY_MS);
+      },
+
+      // Formats a deadline as e.g. "Sep 25, 2026"
+      formatDate: (deadline) => {
+        const d = normalizeDate(deadline);
+        return d === null
+          ? ""
+          : d.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            });
+      },
+
+      // Human-readable file size: 1536 -> "1.5 KB"
+      formatBytes: (bytes) => {
+        const n = Number(bytes) || 0;
+        if (n < 1024) return `${n} B`;
+
+        const units = ["KB", "MB", "GB", "TB"];
+        let value = n / 1024;
+        let unit = 0;
+        while (value >= 1024 && unit < units.length - 1) {
+          value /= 1024;
+          unit++;
+        }
+        return `${value < 10 ? value.toFixed(1) : Math.round(value)} ${units[unit]}`;
+      },
+    },
+  }),
+);
+
+app.set("view engine", "handlebars");
+app.set("views", "./views");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+
+// --- Admin session management ----------------------------------------------
+// Load all models first: connect-session-sequelize (created with
+// table: 'sessions') looks up the model named "Session" on the Sequelize
+// instance at construction time, so it must already be defined.
+require("./models");
+
+// Sessions live in the MySQL 'sessions' table (same DB as the app), so
+// logins survive server restarts. Expired rows are pruned by the store
+// every 15 minutes.
+const sessionStore = new SequelizeStore({
+  db: require("./config/database"),
+  table: "sessions",
+});
+
+// Fail fast at boot if the store could not resolve the Session model
+// (models not loaded before store construction) instead of failing later
+// with "Cannot read properties of undefined (reading 'findCreateFind')"
+// on the first login.
+if (!sessionStore.sessionModel) {
+  throw new Error(
+    "Session store could not resolve the 'Session' model. require('./models') must run before the session middleware is configured.",
+  );
+}
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "dev-only-insecure-secret",
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: "auto",
+      maxAge: 2 * 60 * 60 * 1000, // 2 hours
+    },
+  }),
+);
+
+// Flash messages: controllers call req.flash(type, text) before a redirect
+// and the page the redirect leads to renders res.locals.flash once.
+app.use(require("./Middlewares/flash"));
+
+// Dev helper so tests can fake a logged-in admin session without touching
+// the real session store. Only honors the header when the real session is
+// not populated for the request.
+app.use((req, res, next) => {
+  if (req.headers["x-mock-session"] && !req.session?.adminId) {
+    try {
+      const patch = JSON.parse(req.headers["x-mock-session"]);
+      req.session = req.session || {};
+      Object.assign(req.session, patch);
+    } catch (error) {
+      /* ignore malformed mock header */
+    }
+  }
+  next();
+});
+
+// Expose login state to all views: admin navbar/buttons on public pages
+// render only when an admin is logged in.
+app.use((req, res, next) => {
+  res.locals.adminLoggedIn = Boolean(req.session && req.session.adminId);
+  next();
+});
+
+// Inject the shared job validation constants into every view as
+// window.JOB_VALIDATION. The client-side validator
+// (public/js/jobs/validation.js) and the dropzone scripts read their limits
+// from here, so frontend and backend rules share one source of truth
+// (Middlewares/jobValidationConstants.js).
+app.use((req, res, next) => {
+  res.locals.jobValidationJson = require("./Middlewares/jobValidationConstants");
+  next();
+});
+
+//Routes
+const jobRoute = require("./routes/jobRoute.js");
+const scholarshipRoute = require("./routes/scholarshipRoute.js");
+const internshipRoute = require("./routes/internshipRoute.js");
+const informationalPageRoute = require("./routes/informationalPages.js");
+const adminRoute = require("./routes/adminRoute.js");
+const homeController = require("./controllers/homecontroller.js");
+const {
+  notFoundHandler,
+  globalErrorHandler,
+} = require("./Middlewares/errorHandlers.js");
+
+app.use("/", informationalPageRoute);
+
+// Associate the routes with their respective paths
+app.use("/jobs", jobRoute);
+app.use("/jobs", require("./routes/cloudflareUploadRoute"));
+app.use("/scholarships", scholarshipRoute);
+app.use("/internships", internshipRoute);
+app.use("/admin", adminRoute);
+
+app.get("/", homeController.home);
+app.get("/error", (req, res) => {
+  throw new Error("This is a test error for demonstration purposes.");
+});
+
+// 404 handler - must be registered after all routes
+app.use(notFoundHandler);
+
+// Global error handler - must be registered last
+app.use(globalErrorHandler);
+
+const PORT = process.env.PORT || 3000;
+
+// Background job: auto-expire published jobs past their deadline. Runs a
+// catch-up sweep at boot, then every 12 hours via a timer that lives inside
+// this process - jobs created in the future are picked up automatically,
+// no restarts needed (see Middlewares/expireJobs.js).
+require("./Middlewares/expireJobs").startJobExpirySweeper();
+
+module.exports = app;
+
+// Keep the boot behavior when run directly.
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}

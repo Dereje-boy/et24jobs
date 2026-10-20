@@ -1,0 +1,1596 @@
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{job.title}} | ET24Jobs</title>
+
+    <meta
+      name="description"
+      content="{{job.title}} at {{job.companyName}} - Find job details, requirements, deadline and application information on ET24Jobs."
+    />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <style>
+      body {
+        background: #f5f7fb;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1f2937;
+      }
+
+      /* =========================
+           NAVBAR
+        ========================= */
+
+      .navbar {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .navbar-brand {
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: #2563eb !important;
+      }
+
+      .navbar-brand span {
+        color: #111827;
+      }
+
+      .nav-link {
+        color: #374151 !important;
+        font-weight: 500;
+        margin-left: 10px;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: #2563eb !important;
+      }
+
+      /* =========================
+           BREADCRUMB
+        ========================= */
+
+      .breadcrumb-wrapper {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .breadcrumb {
+        margin-bottom: 0;
+        padding: 14px 0;
+      }
+
+      .breadcrumb a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+
+      /* =========================
+           MAIN JOB HEADER
+        ========================= */
+
+      .job-header {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 16px;
+
+        padding: 28px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+      }
+
+      .company-icon {
+        width: 65px;
+        height: 65px;
+
+        border-radius: 14px;
+
+        background: #eff6ff;
+
+        color: #2563eb;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 1.7rem;
+
+        flex-shrink: 0;
+      }
+
+      .job-title {
+        font-size: 2rem;
+
+        font-weight: 800;
+
+        color: #111827;
+
+        line-height: 1.25;
+      }
+
+      .company-name {
+        color: #6b7280;
+
+        font-size: 1rem;
+      }
+
+      /* =========================
+           BADGES
+        ========================= */
+
+      .job-badge {
+        display: inline-block;
+
+        font-size: 0.8rem;
+
+        font-weight: 600;
+
+        padding: 6px 10px;
+
+        border-radius: 20px;
+
+        background: #eff6ff;
+
+        color: #1d4ed8;
+
+        margin-right: 5px;
+
+        margin-bottom: 5px;
+      }
+
+      .job-badge.location {
+        background: #f3f4f6;
+        color: #4b5563;
+      }
+
+      .job-badge.category {
+        background: #f3e8ff;
+        color: #7e22ce;
+      }
+
+      /* =========================
+           CONTENT CARDS
+        ========================= */
+
+      .content-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 15px;
+
+        padding: 25px;
+
+        margin-bottom: 22px;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+
+        font-weight: 800;
+
+        color: #111827;
+
+        margin-bottom: 18px;
+      }
+
+      .job-description {
+        color: #4b5563;
+
+        line-height: 1.75;
+
+        white-space: pre-line;
+      }
+
+      /* =========================
+           ATTACHMENTS
+        ========================= */
+
+      .attachment-image {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        transition: transform 0.2s ease;
+      }
+
+      .attachment-image:hover {
+        transform: scale(1.02);
+      }
+
+      .attachment-file {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        color: #374151;
+        text-decoration: none;
+      }
+
+      .attachment-file:hover {
+        background: #f8faff;
+        border-color: #bfdbfe;
+      }
+
+      .attachment-file i {
+        color: #2563eb;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+
+      /* Draft label: shown to logged-in admins only (the controller only
+         includes drafts in the data when an admin is logged in). */
+
+      .attachment-thumb-wrapper {
+        position: relative;
+        display: block;
+      }
+
+      .draft-pill {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: rgba(180, 83, 9, 0.92);
+        color: #ffffff;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 3px 9px;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        pointer-events: none;
+      }
+
+      .draft-badge {
+        background: #fef3c7;
+        border: 1px solid #fcd34d;
+        color: #92400e;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 2px 8px;
+        border-radius: 20px;
+        flex-shrink: 0;
+      }
+
+      /* =========================
+           INFORMATION TABLE
+        ========================= */
+
+      .info-row {
+        display: flex;
+
+        padding: 13px 0;
+
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .info-row:last-child {
+        border-bottom: none;
+      }
+
+      .info-label {
+        width: 180px;
+
+        font-weight: 600;
+
+        color: #374151;
+      }
+
+      .info-value {
+        color: #6b7280;
+
+        flex: 1;
+      }
+
+      /* =========================
+           REQUIREMENTS
+        ========================= */
+
+      .requirements-list {
+        padding-left: 20px;
+
+        color: #4b5563;
+
+        line-height: 1.8;
+      }
+
+      /* =========================
+           APPLY CARD
+        ========================= */
+
+      .apply-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 15px;
+
+        padding: 24px;
+
+        position: sticky;
+
+        top: 20px;
+      }
+
+      .apply-title {
+        font-size: 1.2rem;
+
+        font-weight: 800;
+
+        color: #111827;
+      }
+
+      .deadline-box {
+        background: #fff7ed;
+
+        border: 1px solid #fed7aa;
+
+        color: #9a3412;
+
+        border-radius: 10px;
+
+        padding: 13px;
+
+        font-size: 0.9rem;
+
+        margin: 18px 0;
+      }
+
+      .deadline-box.expired {
+        background: #fef2f2;
+
+        border-color: #fecaca;
+
+        color: #b91c1c;
+      }
+
+      .deadline-countdown {
+        margin-top: 8px;
+
+        font-weight: 700;
+      }
+
+      .apply-button {
+        width: 100%;
+
+        border-radius: 10px;
+
+        padding: 12px;
+
+        font-weight: 700;
+
+        font-size: 1rem;
+      }
+
+      .source-note {
+        font-size: 0.78rem;
+
+        color: #9ca3af;
+
+        line-height: 1.5;
+
+        margin-top: 15px;
+      }
+
+      /* =========================
+           SHARE
+        ========================= */
+
+      .share-button {
+        border: 1px solid #d1d5db;
+
+        background: #ffffff;
+
+        color: #374151;
+
+        border-radius: 8px;
+
+        padding: 7px 12px;
+
+        font-size: 0.85rem;
+      }
+
+      .share-button:hover {
+        background: #f3f4f6;
+      }
+
+      .share-button.danger {
+        border-color: #fecaca;
+        color: #b91c1c;
+      }
+
+      .share-button.danger:hover {
+        background: #fef2f2;
+      }
+
+      /* =========================
+           ADVERTISEMENT
+        ========================= */
+
+      .ad-box {
+        min-height: 90px;
+
+        background: #ffffff;
+
+        border: 1px dashed #d1d5db;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #9ca3af;
+
+        font-size: 0.8rem;
+      }
+
+      /* =========================
+           RELATED JOBS
+        ========================= */
+
+      .related-job-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 14px;
+
+        padding: 18px;
+
+        height: 100%;
+
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .related-job-card:hover {
+        transform: translateY(-3px);
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      }
+
+      .related-job-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 10px;
+
+        background: #eff6ff;
+
+        color: #2563eb;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-shrink: 0;
+      }
+
+      .related-job-title {
+        color: #111827;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        line-height: 1.35;
+      }
+
+      .related-job-title:hover {
+        color: #2563eb;
+      }
+
+      .related-company {
+        color: #6b7280;
+
+        font-size: 0.85rem;
+      }
+
+      .related-info {
+        color: #6b7280;
+
+        font-size: 0.82rem;
+
+        margin-top: 10px;
+      }
+
+      /* =========================
+           FOOTER
+        ========================= */
+
+      footer {
+        background: #111827;
+
+        color: #9ca3af;
+
+        margin-top: 60px;
+
+        padding: 40px 20px;
+      }
+
+      footer h5 {
+        color: white;
+
+        font-weight: 700;
+      }
+
+      footer a {
+        color: #9ca3af;
+
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        color: white;
+      }
+
+      /* =========================
+           MOBILE
+        ========================= */
+
+      @media (max-width: 768px) {
+        .job-title {
+          font-size: 1.55rem;
+        }
+
+        .job-header {
+          padding: 20px;
+        }
+
+        .content-card {
+          padding: 20px;
+        }
+
+        .info-row {
+          display: block;
+        }
+
+        .info-label {
+          width: auto;
+
+          margin-bottom: 4px;
+        }
+
+        .apply-card {
+          position: static;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <!-- =========================
+     NAVBAR
+========================= -->
+
+    <nav class="navbar navbar-expand-lg">
+
+      <div class="container">
+
+        <a class="navbar-brand" href="/">
+
+          ET24<span>Jobs</span>
+
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+
+          <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+          <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item">
+
+              <a class="nav-link" href="/">
+                Home
+              </a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link active" href="/jobs">
+                Jobs
+              </a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link" href="/scholarships">
+                Scholarships
+              </a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link" href="/internships">
+                Internships
+              </a>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+    <!-- =========================
+     BREADCRUMB
+========================= -->
+
+    <div class="breadcrumb-wrapper">
+
+      <div class="container">
+
+        <nav aria-label="breadcrumb">
+
+          <ol class="breadcrumb">
+
+            <li class="breadcrumb-item">
+
+              <a href="/">
+                Home
+              </a>
+
+            </li>
+
+            <li class="breadcrumb-item">
+
+              <a href="/jobs">
+                Jobs
+              </a>
+
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">
+
+              {{job.title}}
+
+            </li>
+
+          </ol>
+
+        </nav>
+
+      </div>
+
+    </div>
+
+    <!-- =========================
+     MAIN
+========================= -->
+
+    <main class="container my-4">
+
+      <!-- =========================
+         TOP AD
+    ========================= -->
+
+      <!-- =========================
+         JOB HEADER
+    ========================= -->
+
+      <section class="job-header mb-4">
+
+        <div class="d-flex gap-3">
+
+          <div class="company-icon">
+
+            <i class="bi bi-briefcase-fill"></i>
+
+          </div>
+
+          <div class="flex-grow-1">
+
+            <h1 class="job-title mb-2">
+
+              {{job.title}}
+
+            </h1>
+
+            <div class="company-name mb-3">
+
+              <i class="bi bi-building"></i>
+
+              {{job.companyName}}
+
+            </div>
+
+            <!-- Badges -->
+
+            <div>
+
+              {{#if job.employmentType}}
+
+                <span class="job-badge">
+
+                  <i class="bi bi-clock"></i>
+
+                  {{job.employmentType}}
+
+                </span>
+
+              {{/if}}
+
+              {{#if job.location}}
+
+                <span class="job-badge location">
+
+                  <i class="bi bi-geo-alt"></i>
+
+                  {{job.location}}
+
+                </span>
+
+              {{/if}}
+
+              {{#if job.categoryName}}
+
+                <span class="job-badge category">
+
+                  <i class="bi bi-grid"></i>
+
+                  {{job.categoryName}}
+
+                </span>
+
+              {{/if}}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Share + admin actions -->
+
+        <div class="mt-4 pt-3 border-top d-flex flex-wrap gap-2 align-items-center">
+
+          <button class="share-button" onclick="shareJob()">
+
+            <i class="bi bi-share"></i>
+
+            Share Job
+
+          </button>
+
+          {{#if adminLoggedIn}}
+
+            <a class="share-button" href="/jobs/{{job.id}}/edit">
+
+              <i class="bi bi-pencil"></i>
+
+              Edit
+
+            </a>
+
+            <form
+              action="/jobs/{{job.id}}/delete"
+              method="POST"
+              class="m-0"
+              onsubmit="return confirm('Archive &quot;{{safeConfirmText job.title}}&quot;? It will be hidden from the public site but kept for reference - you can restore it from the admin jobs list.');"
+            >
+
+              <button type="submit" class="share-button danger">
+
+                <i class="bi bi-trash"></i>
+
+                Delete
+
+              </button>
+
+            </form>
+
+          {{/if}}
+
+        </div>
+
+      </section>
+
+      <!-- =========================
+         CONTENT + SIDEBAR
+    ========================= -->
+
+      <div class="row g-4">
+
+        <!-- =====================
+             LEFT COLUMN
+        ====================== -->
+
+        <div class="col-lg-8">
+
+          <!-- Job Overview -->
+
+          <section class="content-card">
+
+            <h2 class="section-title">
+
+              Job Overview
+
+            </h2>
+
+            <div class="job-description">
+
+              {{job.description}}
+
+            </div>
+
+          </section>
+
+          <!-- Attachments -->
+
+          {{#if attachments.length}}
+
+            <section class="content-card">
+
+              <h2 class="section-title">
+
+                Attachments
+
+              </h2>
+
+              {{#if attachmentImages.length}}
+
+                <div class="row g-3 mb-2">
+
+                  {{#each attachmentImages}}
+
+                    <div class="col-6 col-md-4">
+
+                      <a
+                        class="attachment-thumb-wrapper"
+                        href="/uploads/jobs/{{this.storedName}}"
+                        target="_blank"
+                        rel="noopener"
+                      >
+
+                        <img
+                          class="attachment-image"
+                          src="/uploads/jobs/{{this.storedName}}"
+                          alt="{{this.originalName}}"
+                        />
+
+                        {{#if this.isDraft}}
+
+                          <span class="draft-pill">
+
+                            <i class="bi bi-eye-slash"></i>
+
+                            Draft
+
+                          </span>
+
+                        {{/if}}
+
+                      </a>
+
+                    </div>
+
+                  {{/each}}
+
+                </div>
+
+              {{/if}}
+
+              {{#if attachmentFiles.length}}
+
+                <div class="d-grid gap-2">
+
+                  {{#each attachmentFiles}}
+
+                    <a class="attachment-file" href="/uploads/jobs/{{this.storedName}}" download>
+
+                      <i class="bi bi-file-earmark"></i>
+
+                      <span class="flex-grow-1 text-truncate">
+
+                        {{this.originalName}}
+
+                      </span>
+
+                      {{#if this.isDraft}}
+
+                        <span class="draft-badge">
+
+                          <i class="bi bi-eye-slash"></i>
+
+                          Draft
+
+                        </span>
+
+                      {{/if}}
+
+                      <small class="text-muted">
+
+                        {{formatBytes this.sizeBytes}}
+
+                      </small>
+
+                    </a>
+
+                  {{/each}}
+
+                </div>
+
+              {{/if}}
+
+            </section>
+
+          {{/if}}
+
+          <!-- Job Details -->
+
+          <section class="content-card">
+
+            <h2 class="section-title">
+
+              Job Details
+
+            </h2>
+
+            <div class="info-row">
+
+              <div class="info-label">
+
+                Job Title
+
+              </div>
+
+              <div class="info-value">
+
+                {{job.title}}
+
+              </div>
+
+            </div>
+
+            <div class="info-row">
+
+              <div class="info-label">
+
+                Organization
+
+              </div>
+
+              <div class="info-value">
+
+                {{job.companyName}}
+
+              </div>
+
+            </div>
+
+            {{#if job.employmentType}}
+
+              <div class="info-row">
+
+                <div class="info-label">
+
+                  Employment Type
+
+                </div>
+
+                <div class="info-value">
+
+                  {{job.employmentType}}
+
+                </div>
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.categoryName}}
+
+              <div class="info-row">
+
+                <div class="info-label">
+
+                  Category
+
+                </div>
+
+                <div class="info-value">
+
+                  {{job.categoryName}}
+
+                </div>
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.location}}
+
+              <div class="info-row">
+
+                <div class="info-label">
+
+                  Location
+
+                </div>
+
+                <div class="info-value">
+
+                  {{job.location}}
+
+                </div>
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.salary}}
+
+              <div class="info-row">
+
+                <div class="info-label">
+
+                  Salary
+
+                </div>
+
+                <div class="info-value">
+
+                  {{job.salary}}
+
+                </div>
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.experience}}
+
+              <div class="info-row">
+
+                <div class="info-label">
+
+                  Experience
+
+                </div>
+
+                <div class="info-value">
+
+                  {{job.experience}}
+
+                </div>
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.qualifications}}
+
+              <div class="info-row">
+
+                <div class="info-label">
+
+                  Qualifications
+
+                </div>
+
+                <div class="info-value">
+
+                  {{job.qualifications}}
+
+                </div>
+
+              </div>
+
+            {{/if}}
+
+          </section>
+
+          <!-- Requirements -->
+
+          {{#if job.requirements}}
+
+            <section class="content-card">
+
+              <h2 class="section-title">
+
+                Requirements
+
+              </h2>
+
+              <div class="job-description">
+
+                {{job.requirements}}
+
+              </div>
+
+            </section>
+
+          {{/if}}
+
+          <!-- Responsibilities -->
+
+          {{#if job.responsibilities}}
+
+            <section class="content-card">
+
+              <h2 class="section-title">
+
+                Responsibilities
+
+              </h2>
+
+              <div class="job-description">
+
+                {{job.responsibilities}}
+
+              </div>
+
+            </section>
+
+          {{/if}}
+
+          <!-- How To Apply -->
+
+          {{#if job.applicationInstructions}}
+
+            <section class="content-card">
+
+              <h2 class="section-title">
+
+                How to Apply
+
+              </h2>
+
+              <div class="job-description">
+
+                {{job.applicationInstructions}}
+
+              </div>
+
+            </section>
+
+          {{/if}}
+
+          <!-- Source -->
+
+          <section class="content-card">
+
+            <h2 class="section-title">
+
+              Job Source
+
+            </h2>
+
+            <p class="text-muted mb-2">
+
+              This opportunity was published on ET24Jobs based on information
+              provided by the original recruiting organization/source.
+
+            </p>
+
+            {{#if job.sourceName}}
+
+              <div class="info-item">
+
+                <i class="bi bi-link-45deg"></i>
+
+                Source:
+
+                <strong>
+
+                  {{job.sourceName}}
+
+                </strong>
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.sourceUrl}}
+
+              <a
+                href="{{job.sourceUrl}}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline-primary mt-2"
+              >
+
+                <i class="bi bi-box-arrow-up-right"></i>
+
+                Visit Original Source
+
+              </a>
+
+            {{/if}}
+
+          </section>
+
+        </div>
+
+        <!-- =====================
+             RIGHT SIDEBAR
+        ====================== -->
+
+        <div class="col-lg-4">
+
+          <!-- Apply -->
+
+          <aside class="apply-card">
+
+            <div class="apply-title">
+
+              Apply for this Job
+
+            </div>            {{#if job.deadline}}
+
+              <div class="deadline-box {{#if (isExpired job.deadline)}}expired{{/if}}">
+
+                <i class="bi bi-calendar-event"></i>
+                <strong>
+                  Application Deadline
+                </strong>
+
+                <br />
+
+                {{formatDate job.deadline}}
+
+                {{#if (isExpired job.deadline)}}
+
+                  <div class="deadline-countdown">
+                    <i class="bi bi-calendar-x"></i>
+                    Deadline passed
+                  </div>
+
+                {{else}}
+
+                  <div class="deadline-countdown">
+                    <i class="bi bi-hourglass-split"></i>
+
+                    {{#if (eq (daysRemaining job.deadline) 0)}}
+                      Closes today — apply now!
+                    {{else}}
+                      {{daysRemaining job.deadline}} day{{#unless (eq (daysRemaining job.deadline) 1)}}s{{/unless}} left to apply
+                    {{/if}}
+
+                  </div>
+
+                {{/if}}
+
+              </div>
+
+            {{/if}}
+
+            {{#if job.applicationUrl}}
+
+              <a
+                href="{{job.applicationUrl}}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary apply-button"
+              >
+
+                Apply Now
+
+                <i class="bi bi-arrow-right"></i>
+
+              </a>
+
+            {{else}}
+
+              <div class="alert alert-warning">
+
+                Application link is not currently available.
+
+              </div>
+
+            {{/if}}
+          </aside>
+
+          <!-- Sidebar Advertisement -->
+
+        </div>
+
+      </div>
+
+      <!-- =========================
+         MIDDLE AD
+    ========================= -->
+
+      <div class="ad-box my-5">
+
+        Advertisement
+
+      </div>
+
+      <!-- =========================
+         RELATED JOBS
+    ========================= -->
+
+      <section>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+          <h2 class="section-title mb-0">
+
+            Related Jobs
+
+          </h2>
+
+          <a href="/jobs" class="btn btn-outline-primary btn-sm">
+
+            View All Jobs
+
+          </a>
+
+        </div>
+
+        <div class="row g-4">
+
+          {{#each relatedJobs}}
+
+            <div class="col-md-6 col-lg-4">
+
+              <article class="related-job-card">
+
+                <div class="d-flex gap-3">
+
+                  <div class="related-job-icon">
+
+                    <i class="bi bi-briefcase-fill"></i>
+
+                  </div>
+
+                  <div>
+
+                    <a href="/jobs/{{slug}}" class="related-job-title">
+
+                      {{title}}
+
+                    </a>
+
+                    <div class="related-company mt-1">
+
+                      <i class="bi bi-building"></i>
+
+                      {{companyName}}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="related-info">
+
+                  {{#if location}}
+
+                    <div class="mb-1">
+
+                      <i class="bi bi-geo-alt"></i>
+
+                      {{location}}
+
+                    </div>
+
+                  {{/if}}
+
+                  {{#if employmentType}}
+
+                    <div>
+
+                      <i class="bi bi-clock"></i>
+
+                      {{employmentType}}
+
+                    </div>
+
+                  {{/if}}
+
+                </div>
+
+                <div class="mt-3">
+
+                  <a
+                    href="/jobs/{{slug}}"
+                    class="btn btn-sm btn-outline-primary"
+                  >
+
+                    View Job
+
+                    <i class="bi bi-arrow-right"></i>
+
+                  </a>
+
+                </div>
+
+              </article>
+
+            </div>
+
+          {{/each}}
+
+        </div>
+
+      </section>
+
+      <!-- =========================
+         BOTTOM AD
+    ========================= -->
+
+    </main>
+
+    <!-- =========================
+     FOOTER
+========================= -->
+
+    <footer>
+
+      <div class="container">
+
+        <div class="row g-4">
+
+          <div class="col-md-5">
+
+            <h5>
+
+              ET24Jobs
+
+            </h5>
+
+            <p class="mt-3">
+
+              Find jobs, scholarships and internships in Ethiopia and around the
+              world.
+
+            </p>
+
+          </div>
+
+          <div class="col-md-3">
+
+            <h5>
+
+              Explore
+
+            </h5>
+
+            <ul class="list-unstyled mt-3">
+
+              <li class="mb-2">
+
+                <a href="/jobs">
+
+                  Jobs
+
+                </a>
+
+              </li>
+
+              <li class="mb-2">
+
+                <a href="/scholarships">
+
+                  Scholarships
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/internships">
+
+                  Internships
+
+                </a>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div class="col-md-4">
+
+            <h5>
+
+              ET24Jobs
+
+            </h5>
+
+            <p class="mt-3">
+
+              Helping job seekers and students discover new opportunities.
+
+            </p>
+
+          </div>
+
+        </div>
+
+        <hr class="border-secondary my-4" />
+
+        <div class="text-center">
+
+          <small>
+
+            © 2026 ET24Jobs. All rights reserved.
+
+          </small>
+
+        </div>
+
+      </div>
+
+    </footer>
+
+    <!-- =========================
+     JAVASCRIPT
+========================= -->
+
+    <script>
+
+      function shareJob() { if (navigator.share) { navigator.share({ title: "{{job.title}}
+      | ET24Jobs", text: "Check out this job opportunity on ET24Jobs.", url:
+      window.location.href }); } else { navigator.clipboard.writeText(
+      window.location.href ); alert( "Job link copied to clipboard." ); } }
+
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
+  </body>
+
+</html>

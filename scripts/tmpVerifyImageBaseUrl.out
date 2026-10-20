@@ -1,0 +1,8 @@
+◇ injected env (3) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+config: {
+  "IMAGE_BASE_URL": "(unset)",
+  "PUBLIC_BASE_URL": "http://192.168.43.243:3000",
+  "configured": false
+}
+FAIL | isConfigured() true — env vars
+SKIP — no Telegram config; would need env vars to go further.
