@@ -61,7 +61,9 @@
         align-items: center;
         gap: 15px;
         text-decoration: none;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
       }
 
       .stat-card:hover {
@@ -112,10 +114,22 @@
         padding: 10px 12px;
       }
 
-      .badge-draft { background: #f3f4f6; color: #4b5563; }
-      .badge-published { background: #dcfce7; color: #166534; }
-      .badge-expired { background: #fef2f2; color: #b91c1c; }
-      .badge-archived { background: #e0e7ff; color: #3730a3; }
+      .badge-draft {
+        background: #f3f4f6;
+        color: #4b5563;
+      }
+      .badge-published {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .badge-expired {
+        background: #fef2f2;
+        color: #b91c1c;
+      }
+      .badge-archived {
+        background: #e0e7ff;
+        color: #3730a3;
+      }
     </style>
 
   </head>
@@ -129,7 +143,8 @@
       <div class="container d-flex flex-wrap align-items-center gap-3">
 
         <a class="brand me-auto" href="/admin">
-          ET24<span>Jobs</span> Admin
+          ET24<span>Jobs</span>
+          Admin
         </a>
 
         <a class="nav-item-link active" href="/admin">
@@ -178,77 +193,111 @@
 
         <div class="col-md-4">
 
-          <a class="stat-card" href="/admin/jobs">
+          <div class="d-flex align-items-center gap-2">
 
-            <div class="stat-icon">
-              <i class="bi bi-briefcase-fill"></i>
+            <a
+              class="stat-card flex-grow-1 text-decoration-none"
+              href="/admin/jobs"
+            >
+              <div class="stat-icon">
+                <i class="bi bi-briefcase-fill"></i>
+              </div>
+              <div>
+                <div class="stat-value">
+                  {{counts.jobs}}
+                </div>
+                <div class="stat-label">
+                  Jobs
+                </div>
+              </div>
+            </a>
+
+            <div class="flex-shrink-0">
+              <a
+                href="/jobs/post"
+                class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 32px; height: 32px;"
+                title="New Job"
+              >
+                <i class="bi bi-plus-lg"></i>
+              </a>
             </div>
 
-            <div>
-              <div class="stat-value">
-                {{counts.jobs}}
-              </div>
-              <div class="stat-label">
-                Jobs
-              </div>
-            </div>
-
-          </a>
+          </div>
 
         </div>
 
         <div class="col-md-4">
 
-          <a class="stat-card" href="/admin/scholarships">
+          <div class="d-flex align-items-center gap-2">
 
-            <div class="stat-icon">
-              <i class="bi bi-mortarboard-fill"></i>
+            <a
+              class="stat-card flex-grow-1 text-decoration-none"
+              href="/admin/scholarships"
+            >
+              <div class="stat-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+              </div>
+              <div>
+                <div class="stat-value">
+                  {{counts.scholarships}}
+                </div>
+                <div class="stat-label">
+                  Scholarships
+                </div>
+              </div>
+            </a>
+
+            <div class="flex-shrink-0">
+              <a
+                href="/scholarships/post"
+                class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 32px; height: 32px;"
+                title="New Scholarship"
+              >
+                <i class="bi bi-plus-lg"></i>
+              </a>
             </div>
 
-            <div>
-              <div class="stat-value">
-                {{counts.scholarships}}
-              </div>
-              <div class="stat-label">
-                Scholarships
-              </div>
-            </div>
-
-          </a>
+          </div>
 
         </div>
 
         <div class="col-md-4">
 
-          <a class="stat-card" href="/admin/internships">
+          <div class="d-flex align-items-center gap-2">
 
-            <div class="stat-icon">
-              <i class="bi bi-lightbulb-fill"></i>
+            <a
+              class="stat-card flex-grow-1 text-decoration-none"
+              href="/admin/internships"
+            >
+              <div class="stat-icon">
+                <i class="bi bi-lightbulb-fill"></i>
+              </div>
+              <div>
+                <div class="stat-value">
+                  {{counts.internships}}
+                </div>
+                <div class="stat-label">
+                  Internships
+                </div>
+              </div>
+            </a>
+
+            <div class="flex-shrink-0">
+              <a
+                href="/internships/post"
+                class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 32px; height: 32px;"
+                title="New Internship"
+              >
+                <i class="bi bi-plus-lg"></i>
+              </a>
             </div>
 
-            <div>
-              <div class="stat-value">
-                {{counts.internships}}
-              </div>
-              <div class="stat-label">
-                Internships
-              </div>
-            </div>
-
-          </a>
+          </div>
 
         </div>
-
-      </div>
-
-      <!-- Quick actions -->
-
-      <div class="d-flex flex-wrap gap-2 mb-4">
-
-        <a class="btn btn-primary btn-sm" href="/jobs/post">
-          <i class="bi bi-plus-lg"></i>
-          New Job
-        </a>
 
       </div>
 
@@ -274,11 +323,16 @@
 
             {{#each recentJobs}}
 
-              <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+              <div
+                class="d-flex justify-content-between align-items-center border-bottom py-2"
+              >
 
                 <div class="me-2 text-truncate">
 
-                  <a href="/jobs/{{this.slug}}" class="small fw-semibold text-decoration-none d-block text-truncate">
+                  <a
+                    href="/jobs/{{this.slug}}"
+                    class="small fw-semibold text-decoration-none d-block text-truncate"
+                  >
                     {{this.title}}
                   </a>
 
@@ -320,7 +374,9 @@
 
             {{#each recentScholarships}}
 
-              <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+              <div
+                class="d-flex justify-content-between align-items-center border-bottom py-2"
+              >
 
                 <div class="me-2 text-truncate">
 
@@ -366,7 +422,9 @@
 
             {{#each recentInternships}}
 
-              <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+              <div
+                class="d-flex justify-content-between align-items-center border-bottom py-2"
+              >
 
                 <div class="me-2 text-truncate">
 
@@ -401,6 +459,15 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
+
+    <script>
+      // Let the + button navigate to its own href (the create page), // not the
+      parent card's href (the admin list).
+      document.querySelectorAll('.plus-btn[data-plus]').forEach((btn) => {
+      btn.addEventListener('click', (e) => { const createUrl =
+      btn.getAttribute('href'); if (createUrl) { e.preventDefault();
+      window.location.href = createUrl; } }); });
+    </script>
 
   </body>
 

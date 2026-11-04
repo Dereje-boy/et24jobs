@@ -152,7 +152,7 @@ app.use(
       httpOnly: true,
       sameSite: "lax",
       secure: "auto",
-      maxAge: 2 * 60 * 60 * 1000, // 2 hours
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
     },
   }),
 );
@@ -210,7 +210,6 @@ app.use("/", informationalPageRoute);
 
 // Associate the routes with their respective paths
 app.use("/jobs", jobRoute);
-app.use("/jobs", require("./routes/cloudflareUploadRoute"));
 app.use("/scholarships", scholarshipRoute);
 app.use("/internships", internshipRoute);
 app.use("/admin", adminRoute);

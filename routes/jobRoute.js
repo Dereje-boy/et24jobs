@@ -36,3 +36,4 @@ router.post("/:id/delete", requireAdmin, jobController.destroy);
 router.get("/:slug", jobController.detail);
 
 module.exports = router;
+

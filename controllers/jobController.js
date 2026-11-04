@@ -246,6 +246,7 @@ exports.create = async (req, res) => {
       notifyJobPublished(createdJob).catch(() => {});
     }
 
+
     res.redirect("/jobs");
   } catch (error) {
     console.error(error);
