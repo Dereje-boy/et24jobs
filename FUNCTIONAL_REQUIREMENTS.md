@@ -232,7 +232,6 @@ Each opportunity card displays:
 - `TELEGRAM_BOT_TOKEN` — Bot token from @BotFather
 - `TELEGRAM_CHANNEL_ID` — Public channel username (e.g., `@channel`)
 - `PUBLIC_BASE_URL` — Base URL for job links (e.g., `https://etjobs.com`)
-- `IMAGE_BASE_URL` — Optional base URL for images (falls back to `PUBLIC_BASE_URL`)
 
 **Behavior:**
 - Announces when a job **becomes** published (draft/expired/archived → published)
@@ -242,7 +241,7 @@ Each opportunity card displays:
   - 0 images → plain text message (`sendMessage`)
   - 1 image → `sendPhoto` with caption
   - 2-10 images → `sendMediaGroup` album (caption on first item)
-- **Image delivery:** URL-first (Telegram downloads from `IMAGE_BASE_URL`), falls back to multipart upload if URL fails
+- **Image delivery:** files are read from `public/uploads/jobs/` and uploaded as multipart/form-data (no public image URL required)
 - Max 10 images per album
 - Caption truncated to 1024 chars
 - Timeout: 4 seconds per request
@@ -387,7 +386,6 @@ All job create/edit submissions are validated before reaching the controller:
 | `TELEGRAM_BOT_TOKEN` | No | Telegram bot token for announcements |
 | `TELEGRAM_CHANNEL_ID` | No | Telegram channel username |
 | `PUBLIC_BASE_URL` | No | Base URL for job links |
-| `IMAGE_BASE_URL` | No | Base URL for image downloads by Telegram |
 | `JOB_ATTACHMENT_MAX_FILES` | No | Max attachment files (default: 5) |
 | `JOB_ATTACHMENT_MAX_SIZE_BYTES` | No | Max file size in bytes (default: 10,485,760) |
 | `CLOUDFLARE_UPLOAD_ENABLED` | No | Enable Cloudflare R2 storage |

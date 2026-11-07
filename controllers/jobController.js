@@ -183,7 +183,7 @@ exports.create = async (req, res) => {
       status,
     } = req.body;
 
-    console.log(req.body);
+    // console.log(req.body);
 
     const transaction = await db.transaction();
 
@@ -245,7 +245,6 @@ exports.create = async (req, res) => {
     if (createdJob.status === "published") {
       notifyJobPublished(createdJob).catch(() => {});
     }
-
 
     res.redirect("/jobs");
   } catch (error) {
