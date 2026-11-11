@@ -1,5 +1,13 @@
 const { Job, Scholarship, Internship } = require("../models");
 
+// Head data for the shared layout.
+const PAGE_LOCALS = {
+  pageTitle: "ET24Jobs - Jobs, Scholarships & Internship",
+  pageDescription:
+    "Find the latest jobs, scholarships and internships on ET24Jobs.",
+  pageCss: "/css/pages/home.css",
+};
+
 exports.home = async (req, res) => {
   try {
     const latestJobs = await Job.findAll({
@@ -33,6 +41,7 @@ exports.home = async (req, res) => {
     });
 
     res.render("index", {
+      ...PAGE_LOCALS,
       latestJobs: latestJobs.map((job) => job.toJSON()),
       latestScholarships: latestScholarships.map((scholarship) =>
         scholarship.toJSON(),
@@ -46,6 +55,6 @@ exports.home = async (req, res) => {
 
     // res.status(500).send("Unable to load homepage.");
     // res.render("error", { message: "Unable to load homepage." });
-    res.render("index");
+    res.render("index", PAGE_LOCALS);
   }
 };

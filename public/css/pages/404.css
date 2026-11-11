@@ -1,0 +1,35 @@
+/* Page-specific styles (shared chrome lives in /css/site.css) */
+
+
+
+      .error-section {
+        padding: 90px 20px 70px;
+      }
+
+
+
+      .error-code {
+        font-size: 6rem;
+        font-weight: 800;
+        line-height: 1;
+        color: #2563eb;
+      }
+
+
+
+      .error-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #111827;
+        margin-top: 15px;
+      }
+
+
+
+      .error-text {
+        max-width: 620px;
+        margin: 15px auto 0;
+        color: #6b7280;
+        line-height: 1.7;
+      }
+

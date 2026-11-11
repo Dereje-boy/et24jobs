@@ -1,0 +1,592 @@
+/* Page-specific styles (shared chrome lives in /css/site.css) */
+
+
+
+      /* =========================
+           BREADCRUMB
+        ========================= */
+
+      .breadcrumb-wrapper {
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+
+
+      .breadcrumb {
+        margin-bottom: 0;
+        padding: 14px 0;
+      }
+
+
+
+      .breadcrumb a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+
+
+
+      /* =========================
+           MAIN JOB HEADER
+        ========================= */
+
+      .job-header {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 16px;
+
+        padding: 28px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+      }
+
+
+
+      .company-icon {
+        width: 65px;
+        height: 65px;
+
+        border-radius: 14px;
+
+        background: #eff6ff;
+
+        color: #2563eb;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 1.7rem;
+
+        flex-shrink: 0;
+      }
+
+
+
+      .job-title {
+        font-size: 2rem;
+
+        font-weight: 800;
+
+        color: #111827;
+
+        line-height: 1.25;
+      }
+
+
+
+      .company-name {
+        color: #6b7280;
+
+        font-size: 1rem;
+      }
+
+
+
+      /* =========================
+           BADGES
+        ========================= */
+
+      .job-badge {
+        display: inline-block;
+
+        font-size: 0.8rem;
+
+        font-weight: 600;
+
+        padding: 6px 10px;
+
+        border-radius: 20px;
+
+        background: #eff6ff;
+
+        color: #1d4ed8;
+
+        margin-right: 5px;
+
+        margin-bottom: 5px;
+      }
+
+
+
+      .job-badge.location {
+        background: #f3f4f6;
+        color: #4b5563;
+      }
+
+
+
+      .job-badge.category {
+        background: #f3e8ff;
+        color: #7e22ce;
+      }
+
+
+
+      /* =========================
+           CONTENT CARDS
+        ========================= */
+
+      .content-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 15px;
+
+        padding: 25px;
+
+        margin-bottom: 22px;
+      }
+
+
+
+      .section-title {
+        font-size: 1.25rem;
+
+        font-weight: 800;
+
+        color: #111827;
+
+        margin-bottom: 18px;
+      }
+
+
+
+      .job-description {
+        color: #4b5563;
+
+        line-height: 1.75;
+
+        white-space: pre-line;
+      }
+
+
+
+      /* =========================
+           ATTACHMENTS
+        ========================= */
+
+      .attachment-image {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        transition: transform 0.2s ease;
+      }
+
+
+
+      .attachment-image:hover {
+        transform: scale(1.02);
+      }
+
+
+
+      .attachment-file {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        color: #374151;
+        text-decoration: none;
+      }
+
+
+
+      .attachment-file:hover {
+        background: #f8faff;
+        border-color: #bfdbfe;
+      }
+
+
+
+      .attachment-file i {
+        color: #2563eb;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+
+
+
+      /* Draft label: shown to logged-in admins only (the controller only
+         includes drafts in the data when an admin is logged in). */
+
+      .attachment-thumb-wrapper {
+        position: relative;
+        display: block;
+      }
+
+
+
+      .draft-pill {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        background: rgba(180, 83, 9, 0.92);
+        color: #ffffff;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 3px 9px;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        pointer-events: none;
+      }
+
+
+
+      .draft-badge {
+        background: #fef3c7;
+        border: 1px solid #fcd34d;
+        color: #92400e;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 2px 8px;
+        border-radius: 20px;
+        flex-shrink: 0;
+      }
+
+
+
+      /* =========================
+           INFORMATION TABLE
+        ========================= */
+
+      .info-row {
+        display: flex;
+
+        padding: 13px 0;
+
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+
+
+      .info-row:last-child {
+        border-bottom: none;
+      }
+
+
+
+      .info-label {
+        width: 180px;
+
+        font-weight: 600;
+
+        color: #374151;
+      }
+
+
+
+      .info-value {
+        color: #6b7280;
+
+        flex: 1;
+      }
+
+
+
+      /* =========================
+           REQUIREMENTS
+        ========================= */
+
+      .requirements-list {
+        padding-left: 20px;
+
+        color: #4b5563;
+
+        line-height: 1.8;
+      }
+
+
+
+      /* =========================
+           APPLY CARD
+        ========================= */
+
+      .apply-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 15px;
+
+        padding: 24px;
+
+        position: sticky;
+
+        top: 20px;
+      }
+
+
+
+      .apply-title {
+        font-size: 1.2rem;
+
+        font-weight: 800;
+
+        color: #111827;
+      }
+
+
+
+      .deadline-box {
+        background: #fff7ed;
+
+        border: 1px solid #fed7aa;
+
+        color: #9a3412;
+
+        border-radius: 10px;
+
+        padding: 13px;
+
+        font-size: 0.9rem;
+
+        margin: 18px 0;
+      }
+
+
+
+      .deadline-box.expired {
+        background: #fef2f2;
+
+        border-color: #fecaca;
+
+        color: #b91c1c;
+      }
+
+
+
+      .deadline-countdown {
+        margin-top: 8px;
+
+        font-weight: 700;
+      }
+
+
+
+      .apply-button {
+        width: 100%;
+
+        border-radius: 10px;
+
+        padding: 12px;
+
+        font-weight: 700;
+
+        font-size: 1rem;
+      }
+
+
+
+      .source-note {
+        font-size: 0.78rem;
+
+        color: #9ca3af;
+
+        line-height: 1.5;
+
+        margin-top: 15px;
+      }
+
+
+
+      /* =========================
+           SHARE
+        ========================= */
+
+      .share-button {
+        border: 1px solid #d1d5db;
+
+        background: #ffffff;
+
+        color: #374151;
+
+        border-radius: 8px;
+
+        padding: 7px 12px;
+
+        font-size: 0.85rem;
+      }
+
+
+
+      .share-button:hover {
+        background: #f3f4f6;
+      }
+
+
+
+      .share-button.danger {
+        border-color: #fecaca;
+        color: #b91c1c;
+      }
+
+
+
+      .share-button.danger:hover {
+        background: #fef2f2;
+      }
+
+
+
+      /* =========================
+           ADVERTISEMENT
+        ========================= */
+
+      .ad-box {
+        min-height: 90px;
+
+        background: #ffffff;
+
+        border: 1px dashed #d1d5db;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #9ca3af;
+
+        font-size: 0.8rem;
+      }
+
+
+
+      /* =========================
+           RELATED JOBS
+        ========================= */
+
+      .related-job-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 14px;
+
+        padding: 18px;
+
+        height: 100%;
+
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+
+
+      .related-job-card:hover {
+        transform: translateY(-3px);
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      }
+
+
+
+      .related-job-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 10px;
+
+        background: #eff6ff;
+
+        color: #2563eb;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        flex-shrink: 0;
+      }
+
+
+
+      .related-job-title {
+        color: #111827;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        line-height: 1.35;
+      }
+
+
+
+      .related-job-title:hover {
+        color: #2563eb;
+      }
+
+
+
+      .related-company {
+        color: #6b7280;
+
+        font-size: 0.85rem;
+      }
+
+
+
+      .related-info {
+        color: #6b7280;
+
+        font-size: 0.82rem;
+
+        margin-top: 10px;
+      }
+
+
+
+      /* =========================
+           MOBILE
+        ========================= */
+
+      @media (max-width: 768px) {
+        .job-title {
+          font-size: 1.55rem;
+        }
+
+        .job-header {
+          padding: 20px;
+        }
+
+        .content-card {
+          padding: 20px;
+        }
+
+        .info-row {
+          display: block;
+        }
+
+        .info-label {
+          width: auto;
+
+          margin-bottom: 4px;
+        }
+
+        .apply-card {
+          position: static;
+        }
+      }
+

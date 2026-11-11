@@ -50,6 +50,10 @@ exports.index = async (req, res) => {
     }
 
     res.render("job/index", {
+      pageTitle: "Jobs | ET24Jobs",
+      pageDescription:
+        "Find the latest jobs and employment opportunities on ET24Jobs.",
+      pageCss: "/css/pages/jobs.css",
       jobs: jobs.map((job) => ({
         ...job.toJSON(),
         attachments: attachmentsByJob.get(job.id) || [],
@@ -125,6 +129,9 @@ exports.detail = async (req, res) => {
 
     // Render detail page
     res.render("job/job_detail", {
+      pageTitle: `${job.title} | ET24Jobs`,
+      pageDescription: `${job.title} at ${job.companyName} - Find job details, requirements, deadline and application information on ET24Jobs.`,
+      pageCss: "/css/pages/job-detail.css",
       job: job.toJSON(),
       attachments,
       attachmentImages: attachments.filter((a) => a.isImage),
@@ -150,13 +157,20 @@ exports.post = async (req, res) => {
     // console.log(categories.map((category) => category.toJSON()));
 
     res.render("job/createJobs.handlebars", {
+      pageTitle: "Create Job | ET24Jobs",
+      pageDescription: "Create and publish a new job opportunity on ET24Jobs.",
+      pageCss: "/css/pages/job-create.css",
       categories: categories.map((category) => category.toJSON()),
     });
   } catch (error) {
     console.error(error);
 
     // Render the form anyway; the category dropdown will just be empty.
-    res.render("job/createJobs.handlebars");
+    res.render("job/createJobs.handlebars", {
+      pageTitle: "Create Job | ET24Jobs",
+      pageDescription: "Create and publish a new job opportunity on ET24Jobs.",
+      pageCss: "/css/pages/job-create.css",
+    });
   }
 };
 
@@ -295,6 +309,9 @@ exports.showEdit = async (req, res) => {
     jobData.attachments = (jobData.attachments || []).map(withImageFlag);
 
     res.render("job/editJobs.handlebars", {
+      pageTitle: "Edit Job | ET24Jobs",
+      pageDescription: "Edit an existing job opportunity on ET24Jobs.",
+      pageCss: "/css/pages/job-edit.css",
       job: jobData,
       categories: categories.map((category) => category.toJSON()),
     });

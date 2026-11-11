@@ -4,6 +4,10 @@ const { Op } = require("sequelize");
 exports.index = async (req, res) => {
   const internships = await Internship.findAll();
   res.render("internship/index.handlebars", {
+    pageTitle: "Internships | ET24Jobs",
+    pageDescription:
+      "Find the latest internships and training opportunities on ET24Jobs.",
+    pageCss: "/css/pages/internships.css",
     internships: internships
       .slice(0, 10)
       .map((internship) => internship.toJSON()),
@@ -36,6 +40,9 @@ exports.detail = async (req, res) => {
     });
 
     res.render("internship/detail", {
+      pageTitle: `${internship.title} | ET24Jobs`,
+      pageDescription: `${internship.title} internship at ${internship.organizationName} — eligibility, duration, benefits, deadline and application information on ET24Jobs.`,
+      pageCss: "/css/pages/internship-detail.css",
       internship: internship.toJSON(),
       relatedInternships: relatedInternships.slice(0, 5).map((i) => i.toJSON()),
     });

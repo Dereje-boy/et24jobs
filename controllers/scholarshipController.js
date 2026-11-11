@@ -7,6 +7,10 @@ exports.index = async (req, res) => {
     // console.log('Scholarships fetched:', scholarships[0]);
 
     res.render("scholarship/index", {
+      pageTitle: "Scholarships | ET24Jobs",
+      pageDescription:
+        "Find scholarships and fully funded study opportunities on ET24Jobs.",
+      pageCss: "/css/pages/scholarships.css",
       scholarships: scholarships.map((scholarship) => scholarship.toJSON()),
     });
 
@@ -44,6 +48,9 @@ exports.detail = async (req, res) => {
   });
 
   res.render("scholarship/detail", {
+    pageTitle: `${scholarship.title} | ET24Jobs`,
+    pageDescription: `${scholarship.title} scholarship — eligibility, funding, deadline and application information on ET24Jobs.`,
+    pageCss: "/css/pages/scholarship-detail.css",
     scholarship: scholarship.toJSON(),
     relatedScholarships: relatedScholarships.slice(0, 5).map((s) => s.toJSON()),
   });

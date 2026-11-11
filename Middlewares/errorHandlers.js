@@ -5,7 +5,11 @@ function notFoundHandler(req, res, next) {
 
   // Respond with JSON for API/AJAX requests, otherwise render an HTML page.
   if (req.accepts("html")) {
-    return res.render("404", { title: "Page Not Found" });
+    return res.render("404", {
+      title: "Page Not Found",
+      pageTitle: "Page Not Found | ET24Jobs",
+      pageCss: "/css/pages/404.css",
+    });
   }
 
   return res.json({
@@ -34,6 +38,8 @@ function globalErrorHandler(err, req, res, next) {
   if (req.accepts("html")) {
     return res.render("500", {
       title: "Server Error",
+      pageTitle: "Server Error | ET24Jobs",
+      pageCss: "/css/pages/500.css",
       message: err.message,
       // Only expose the stack trace in development.
       stack: process.env.NODE_ENV === "development" ? err.stack : null,

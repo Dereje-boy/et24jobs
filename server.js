@@ -191,6 +191,30 @@ app.use((req, res, next) => {
   next();
 });
 
+// Highlight the current section in the shared navbar. Derived from the URL so
+// no controller has to pass it.
+app.use((req, res, next) => {
+  const urlPath = req.path;
+
+  if (urlPath === "/") {
+    res.locals.activeNav = "home";
+  } else if (urlPath === "/jobs" || urlPath.startsWith("/jobs/")) {
+    res.locals.activeNav = "jobs";
+  } else if (
+    urlPath === "/scholarships" ||
+    urlPath.startsWith("/scholarships/")
+  ) {
+    res.locals.activeNav = "scholarships";
+  } else if (
+    urlPath === "/internships" ||
+    urlPath.startsWith("/internships/")
+  ) {
+    res.locals.activeNav = "internships";
+  }
+
+  next();
+});
+
 // Inject the shared job validation constants into every view as
 // window.JOB_VALIDATION. The client-side validator
 // (public/js/jobs/validation.js) and the dropzone scripts read their limits

@@ -6,6 +6,13 @@ const adminAuthController = require("../controllers/adminAuthController");
 const adminController = require("../controllers/adminController");
 const { requireAdmin } = require("../Middlewares/requireAdmin");
 
+// Admin pages are self-contained documents (own navbar/footer/head), so they
+// render without the shared public layout.
+router.use((req, res, next) => {
+  res.locals.layout = false;
+  next();
+});
+
 // Login / logout
 router.get("/login", adminAuthController.showLogin);
 router.post("/login", adminAuthController.login);

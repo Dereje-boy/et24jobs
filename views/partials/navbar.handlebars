@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      ET24<span>Jobs</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link{{#ifEquals activeNav "home"}} active{{/ifEquals}}"
+            href="/"
+            {{#ifEquals activeNav "home"}}aria-current="page"{{/ifEquals}}
+          >
+            Home
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link{{#ifEquals activeNav "jobs"}} active{{/ifEquals}}"
+            href="/jobs"
+            {{#ifEquals activeNav "jobs"}}aria-current="page"{{/ifEquals}}
+          >
+            Jobs
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link{{#ifEquals activeNav "scholarships"}} active{{/ifEquals}}"
+            href="/scholarships"
+            {{#ifEquals activeNav "scholarships"}}aria-current="page"{{/ifEquals}}
+          >
+            Scholarships
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link{{#ifEquals activeNav "internships"}} active{{/ifEquals}}"
+            href="/internships"
+            {{#ifEquals activeNav "internships"}}aria-current="page"{{/ifEquals}}
+          >
+            Internships
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">
+            Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

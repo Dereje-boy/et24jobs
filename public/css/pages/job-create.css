@@ -1,0 +1,349 @@
+/* Page-specific styles (shared chrome lives in /css/site.css) */
+
+
+
+      /* ==============================
+           PAGE HEADER
+        ============================== */
+
+      .page-header {
+        background: linear-gradient(135deg, #eff6ff, #ffffff);
+
+        border-bottom: 1px solid #e5e7eb;
+
+        padding: 45px 20px;
+      }
+
+
+
+      .page-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #111827;
+      }
+
+
+
+      .page-subtitle {
+        max-width: 700px;
+        margin: 12px auto 0;
+        color: #6b7280;
+        line-height: 1.7;
+      }
+
+
+
+      /* ==============================
+           FORM CARD
+        ============================== */
+
+      .form-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 15px;
+        padding: 30px;
+      }
+
+
+
+      .form-section {
+        margin-bottom: 35px;
+      }
+
+
+
+      .form-section:last-child {
+        margin-bottom: 0;
+      }
+
+
+
+      .section-heading {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: #111827;
+
+        padding-bottom: 12px;
+        margin-bottom: 22px;
+
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+
+
+      .section-heading i {
+        color: #2563eb;
+        margin-right: 7px;
+      }
+
+
+
+      .form-label {
+        font-weight: 600;
+        color: #374151;
+      }
+
+
+
+      .form-label .required {
+        color: #dc2626;
+      }
+
+
+
+      .form-control,
+      .form-select {
+        padding: 11px 13px;
+        border-color: #d1d5db;
+      }
+
+
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #2563eb;
+
+        box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.1);
+      }
+
+
+
+      textarea.form-control {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .form-text {
+
+        color: #9ca3af;
+
+      }
+
+
+
+      /* ==============================
+           DROPZONE
+        ============================== */
+
+      .dropzone {
+        border: 2px dashed #bfdbfe;
+        border-radius: 12px;
+        background: #f8faff;
+        padding: 35px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition:
+          border-color 0.2s ease,
+          background-color 0.2s ease;
+      }
+
+
+
+      .dropzone:hover,
+      .dropzone.dragover {
+        border-color: #2563eb;
+        background: #eff6ff;
+      }
+
+
+
+      .dropzone i {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+
+
+      .file-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 12px;
+        position: relative;
+      }
+
+
+
+      .file-thumb {
+        width: 100%;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+
+
+      .file-thumb-placeholder {
+        height: 110px;
+        border-radius: 8px;
+        background: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #6b7280;
+      }
+
+
+
+      .file-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #111827;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+
+
+      .file-remove {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        border: none;
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        line-height: 1;
+        background: rgba(17, 24, 39, 0.75);
+        color: #ffffff;
+      }
+
+
+
+      /* ==============================
+           SIDEBAR
+        ============================== */
+
+      .side-card {
+        background: #ffffff;
+
+        border: 1px solid #e5e7eb;
+
+        border-radius: 15px;
+
+        padding: 25px;
+
+        margin-bottom: 20px;
+      }
+
+
+
+      .side-heading {
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 17px;
+      }
+
+
+
+      .info-item {
+        display: flex;
+
+        gap: 10px;
+
+        margin-bottom: 14px;
+
+        color: #6b7280;
+
+        font-size: 0.9rem;
+
+        line-height: 1.5;
+      }
+
+
+
+      .info-item i {
+        color: #2563eb;
+        margin-top: 2px;
+      }
+
+
+
+      /* ==============================
+           SOURCE BOX
+        ============================== */
+
+      .source-note {
+        background: #eff6ff;
+
+        border: 1px solid #bfdbfe;
+
+        border-radius: 10px;
+
+        padding: 15px;
+
+        color: #374151;
+
+        font-size: 0.9rem;
+
+        line-height: 1.6;
+      }
+
+
+
+      .source-note i {
+        color: #2563eb;
+      }
+
+
+
+      /* ==============================
+           BUTTONS
+        ============================== */
+
+      .btn-primary {
+        padding: 11px 25px;
+        font-weight: 600;
+      }
+
+
+
+      .btn-outline-secondary {
+        padding: 11px 20px;
+        font-weight: 600;
+      }
+
+
+
+      /* ==============================
+           ADVERTISEMENT
+        ============================== */
+
+      .ad-box {
+        min-height: 90px;
+
+        background: #ffffff;
+
+        border: 1px dashed #d1d5db;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #9ca3af;
+
+        font-size: 0.8rem;
+      }
+
+
+
+      /* ==============================
+           RESPONSIVE
+        ============================== */
+
+      @media (max-width: 768px) {
+        .page-title {
+          font-size: 1.8rem;
+        }
+
+        .form-card {
+          padding: 20px;
+        }
+      }
+
