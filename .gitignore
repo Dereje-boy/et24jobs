@@ -6,6 +6,9 @@ node_modules/
 # Uploads (user-generated content)
 uploads/
 
+# Database snapshot dumps (contain admin password hashes)
+backups/
+
 
 # Logs & OS files
 *.log

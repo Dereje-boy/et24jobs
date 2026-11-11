@@ -118,6 +118,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+// TEMPORARY cloud-deployment helper: /db-check tests MySQL hosts/credentials
+// from inside this server. Mounted BEFORE the session middleware on purpose -
+// the session store is MySQL-backed, so this page must still load while the
+// database is unreachable. Remove this line (and routes/dbCheckRoute.js) once
+// the app is connected; the route is disabled unless DB_CHECK_TOKEN is set.
+app.use("/db-check", require("./routes/dbCheckRoute.js"));
+
 // --- Admin session management ----------------------------------------------
 // Load all models first: connect-session-sequelize (created with
 // table: 'sessions') looks up the model named "Session" on the Sequelize
