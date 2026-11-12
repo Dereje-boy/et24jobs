@@ -1,479 +1,303 @@
-<html lang="en">
+<title>Contact Us | ET24Jobs</title>
 
-  <head>
+<meta
+  name="description"
+  content="Contact ET24Jobs regarding jobs, scholarships, internships, corrections and other inquiries."
+/>
 
-    <meta charset="UTF-8" />
+<style>
+  body {
+    background: #f5f7fb;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+  }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  .navbar {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+  }
 
-    <title>Contact Us | ET24Jobs</title>
+  .navbar-brand {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #2563eb !important;
+  }
 
-    <meta
-      name="description"
-      content="Contact ET24Jobs regarding jobs, scholarships, internships, corrections and other inquiries."
-    />
+  .navbar-brand span {
+    color: #111827;
+  }
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+  .nav-link {
+    color: #374151 !important;
+    font-weight: 500;
+    margin-left: 10px;
+  }
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
+  .nav-link:hover,
+  .nav-link.active {
+    color: #2563eb !important;
+  }
 
-    <style>
-      body {
-        background: #f5f7fb;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #1f2937;
-      }
+  .page-header {
+    background: linear-gradient(135deg, #eff6ff, #fff);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 55px 20px;
+  }
 
-      .navbar {
-        background: #fff;
-        border-bottom: 1px solid #e5e7eb;
-      }
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
 
-      .navbar-brand {
-        font-size: 1.45rem;
-        font-weight: 800;
-        color: #2563eb !important;
-      }
+  .page-subtitle {
+    color: #6b7280;
+    max-width: 650px;
+    margin: 15px auto 0;
+    line-height: 1.7;
+  }
 
-      .navbar-brand span {
-        color: #111827;
-      }
+  .content-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 30px;
+    height: 100%;
+  }
 
-      .nav-link {
-        color: #374151 !important;
-        font-weight: 500;
-        margin-left: 10px;
-      }
+  .section-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
 
-      .nav-link:hover,
-      .nav-link.active {
-        color: #2563eb !important;
-      }
+  .content-text {
+    color: #6b7280;
+    line-height: 1.8;
+  }
 
-      .page-header {
-        background: linear-gradient(135deg, #eff6ff, #fff);
-        border-bottom: 1px solid #e5e7eb;
-        padding: 55px 20px;
-      }
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
 
-      .page-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-      }
+  .form-control {
+    padding: 12px;
+    border-color: #d1d5db;
+  }
 
-      .page-subtitle {
-        color: #6b7280;
-        max-width: 650px;
-        margin: 15px auto 0;
-        line-height: 1.7;
-      }
+  .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.1);
+  }
 
-      .content-card {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 15px;
-        padding: 30px;
-        height: 100%;
-      }
+  .ad-box {
+    min-height: 90px;
+    background: #fff;
+    border: 1px dashed #d1d5db;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 0.8rem;
+  }
 
-      .section-title {
-        font-size: 1.3rem;
-        font-weight: 800;
-        margin-bottom: 15px;
-      }
+  footer {
+    background: #111827;
+    color: #9ca3af;
+    margin-top: 60px;
+    padding: 45px 20px;
+  }
 
-      .content-text {
-        color: #6b7280;
-        line-height: 1.8;
-      }
+  footer h5 {
+    color: white;
+  }
 
-      .contact-icon {
-        width: 50px;
-        height: 50px;
-        background: #eff6ff;
-        color: #2563eb;
-        border-radius: 11px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-      }
+  footer a {
+    color: #9ca3af;
+    text-decoration: none;
+  }
 
-      .form-control {
-        padding: 12px;
-        border-color: #d1d5db;
-      }
+  footer a:hover {
+    color: white;
+  }
+</style>
 
-      .form-control:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.1);
-      }
+<section class="page-header text-center">
 
-      .ad-box {
-        min-height: 90px;
-        background: #fff;
-        border: 1px dashed #d1d5db;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #9ca3af;
-        font-size: 0.8rem;
-      }
+  <div class="container">
 
-      footer {
-        background: #111827;
-        color: #9ca3af;
-        margin-top: 60px;
-        padding: 45px 20px;
-      }
+    <h1 class="page-title">
+      Contact Us
+    </h1>
 
-      footer h5 {
-        color: white;
-      }
+    <p class="page-subtitle">
 
-      footer a {
-        color: #9ca3af;
-        text-decoration: none;
-      }
+      Have a question, correction or suggestion? We'd like to hear from you.
 
-      footer a:hover {
-        color: white;
-      }
-    </style>
+    </p>
 
-  </head>
+  </div>
 
-  <body>
+</section>
 
-    <nav class="navbar navbar-expand-lg">
+<main class="container my-5">
 
-      <div class="container">
+  <div class="row g-4">
 
-        <a class="navbar-brand" href="/">
-          ET24<span>Jobs</span>
-        </a>
+    <div class="col-lg-5">
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <div class="content-card">
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-
-          <ul class="navbar-nav ms-auto">
-
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                Home
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/jobs">
-                Jobs
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/scholarships">
-                Scholarships
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="/internships">
-                Internships
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link active" href="/contact">
-                Contact
-              </a>
-            </li>
-
-          </ul>
-
+        <div class="contact-icon">
+          <i class="bi bi-envelope"></i>
         </div>
 
-      </div>
+        <h2 class="section-title">
+          Get in Touch
+        </h2>
 
-    </nav>
+        <p class="content-text">
 
-    <section class="page-header text-center">
-
-      <div class="container">
-
-        <h1 class="page-title">
-          Contact Us
-        </h1>
-
-        <p class="page-subtitle">
-
-          Have a question, correction or suggestion? We'd like to hear from you.
+          You can contact ET24Jobs regarding opportunity information,
+          corrections, technical issues, suggestions or other inquiries.
 
         </p>
 
-      </div>
+        <div class="mt-4">
 
-    </section>
+          <strong>
+            Email
+          </strong>
 
-    <main class="container my-5">
-
-      <div class="ad-box mb-5">
-        Advertisement
-      </div>
-
-      <div class="row g-4">
-
-        <div class="col-lg-5">
-
-          <div class="content-card">
-
-            <div class="contact-icon">
-              <i class="bi bi-envelope"></i>
-            </div>
-
-            <h2 class="section-title">
-              Get in Touch
-            </h2>
-
-            <p class="content-text">
-
-              You can contact ET24Jobs regarding opportunity information,
-              corrections, technical issues, suggestions or other inquiries.
-
-            </p>
-
-            <div class="mt-4">
-
-              <strong>
-                Email
-              </strong>
-
-              <p class="content-text">
-                {{contactEmail}}
-              </p>
-
-            </div>
-
-            <div class="mt-4">
-
-              <strong>
-                Opportunity Corrections
-              </strong>
-
-              <p class="content-text">
-
-                If you notice incorrect, outdated or incomplete information in a
-                listing, please contact us with the relevant opportunity title
-                and the correction.
-
-              </p>
-
-            </div>
-
-          </div>
+          <p class="content-text">
+            {{contactEmail}}
+          </p>
 
         </div>
 
-        <div class="col-lg-7">
+        <div class="mt-4">
 
-          <div class="content-card">
+          <strong>
+            Opportunity Corrections
+          </strong>
 
-            <h2 class="section-title">
-              Send Us a Message
-            </h2>
+          <p class="content-text">
 
-            <p class="content-text">
+            If you notice incorrect, outdated or incomplete information in a
+            listing, please contact us with the relevant opportunity title and
+            the correction.
 
-              Please provide enough information for us to understand your
-              inquiry.
-
-            </p>
-
-            <form action="/contact" method="POST">
-
-              <div class="mb-3">
-
-                <label for="name" class="form-label">
-                  Name
-                </label>
-
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  class="form-control"
-                  required
-                />
-
-              </div>
-
-              <div class="mb-3">
-
-                <label for="email" class="form-label">
-                  Email
-                </label>
-
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  class="form-control"
-                  required
-                />
-
-              </div>
-
-              <div class="mb-3">
-
-                <label for="subject" class="form-label">
-                  Subject
-                </label>
-
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  class="form-control"
-                  required
-                />
-
-              </div>
-
-              <div class="mb-4">
-
-                <label for="message" class="form-label">
-                  Message
-                </label>
-
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="6"
-                  class="form-control"
-                  required
-                ></textarea>
-
-              </div>
-
-              <button type="submit" class="btn btn-primary px-4">
-
-                <i class="bi bi-send"></i>
-
-                Send Message
-
-              </button>
-
-            </form>
-
-          </div>
+          </p>
 
         </div>
 
       </div>
 
-    </main>
+    </div>
 
-    <footer>
+    <div class="col-lg-7">
 
-      <div class="container">
+      <div class="content-card">
 
-        <div class="row g-4">
+        <h2 class="section-title">
+          Send Us a Message
+        </h2>
 
-          <div class="col-md-5">
+        <p class="content-text">
 
-            <h5>ET24Jobs</h5>
+          Please provide enough information for us to understand your inquiry.
 
-            <p class="mt-3">
-              Helping job seekers and students discover new opportunities.
-            </p>
+        </p>
 
-          </div>
+        <form action="/contact" method="POST">
 
-          <div class="col-md-3">
+          <div class="mb-3">
 
-            <h5>Explore</h5>
+            <label for="name" class="form-label">
+              Name
+            </label>
 
-            <ul class="list-unstyled mt-3">
-
-              <li class="mb-2">
-                <a href="/jobs">Jobs</a>
-              </li>
-
-              <li class="mb-2">
-                <a href="/scholarships">
-                  Scholarships
-                </a>
-              </li>
-
-              <li>
-                <a href="/internships">
-                  Internships
-                </a>
-              </li>
-
-            </ul>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-control"
+              required
+            />
 
           </div>
 
-          <div class="col-md-4">
+          <div class="mb-3">
 
-            <h5>Information</h5>
+            <label for="email" class="form-label">
+              Email
+            </label>
 
-            <ul class="list-unstyled mt-3">
-
-              <li class="mb-2">
-                <a href="/about">
-                  About Us
-                </a>
-              </li>
-
-              <li class="mb-2">
-                <a href="/privacy-policy">
-                  Privacy Policy
-                </a>
-              </li>
-
-              <li>
-                <a href="/terms">
-                  Terms & Conditions
-                </a>
-              </li>
-
-            </ul>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              required
+            />
 
           </div>
 
-        </div>
+          <div class="mb-3">
 
-        <hr class="border-secondary my-4" />
+            <label for="subject" class="form-label">
+              Subject
+            </label>
 
-        <div class="text-center">
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              class="form-control"
+              required
+            />
 
-          <small>
-            © 2026 ET24Jobs. All rights reserved.
-          </small>
+          </div>
 
-        </div>
+          <div class="mb-4">
+
+            <label for="message" class="form-label">
+              Message
+            </label>
+
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              class="form-control"
+              required
+            ></textarea>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary px-4">
+
+            <i class="bi bi-send"></i>
+
+            Send Message
+
+          </button>
+
+        </form>
 
       </div>
 
-    </footer>
+    </div>
 
-  </body>
+  </div>
 
-</html>
+</main>

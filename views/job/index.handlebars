@@ -1,845 +1,589 @@
-<html lang="en">
-
-  <head>
-
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Jobs | ET24Jobs</title>
-
-    <meta
-      name="description"
-      content="Find the latest jobs and employment opportunities on ET24Jobs."
-    />
-
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-
-    <style>
-      body {
-        background: #f5f7fb;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #1f2937;
-      }
-
-      /* =========================
-           NAVBAR
-        ========================= */
-
-      .navbar {
-        background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
-      }
-
-      .navbar-brand {
-        font-size: 1.45rem;
-        font-weight: 800;
-        color: #2563eb !important;
-      }
-
-      .navbar-brand span {
-        color: #111827;
-      }
-
-      .nav-link {
-        color: #374151 !important;
-        font-weight: 500;
-        margin-left: 10px;
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        color: #2563eb !important;
-      }
-
-      /* =========================
+<title>Jobs | ET24Jobs</title>
+<style>
+  /* =========================
            HERO
         ========================= */
 
-      .jobs-hero {
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  .jobs-hero {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
 
-        color: white;
+    color: white;
 
-        padding: 55px 20px;
+    padding: 55px 20px;
 
-        border-radius: 0 0 25px 25px;
-      }
+    border-radius: 0 0 25px 25px;
+  }
 
-      .jobs-hero h1 {
-        font-size: 2.4rem;
-        font-weight: 800;
-      }
+  .jobs-hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+  }
 
-      .jobs-hero p {
-        max-width: 650px;
-        margin: 15px auto 0;
-        opacity: 0.92;
-        font-size: 1.05rem;
-      }
+  .jobs-hero p {
+    max-width: 650px;
+    margin: 15px auto 0;
+    opacity: 0.92;
+    font-size: 1.05rem;
+  }
 
-      /* =========================
+  /* =========================
            SEARCH
         ========================= */
 
-      .search-box {
-        margin-top: -25px;
-        position: relative;
-        z-index: 5;
-      }
+  .search-box {
+    margin-top: -25px;
+    position: relative;
+    z-index: 5;
+  }
 
-      .search-card {
-        background: white;
-        border-radius: 15px;
-        padding: 18px;
+  .search-card {
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
 
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      }
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
 
-      .search-input {
-        border: 1px solid #d1d5db;
-        border-radius: 10px;
-        height: 48px;
-      }
+  .search-input {
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    height: 48px;
+  }
 
-      .search-button {
-        height: 48px;
-        border-radius: 10px;
-        font-weight: 600;
-      }
+  .search-button {
+    height: 48px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
 
-      /* =========================
+  /* =========================
            SECTION
         ========================= */
 
-      .section-title {
-        font-weight: 800;
-        color: #111827;
-      }
+  .section-title {
+    font-weight: 800;
+    color: #111827;
+  }
 
-      .result-count {
-        color: #6b7280;
-      }
+  .result-count {
+    color: #6b7280;
+  }
 
-      /* =========================
+  /* =========================
            JOB CARD
         ========================= */
 
-      .job-card {
-        background: white;
+  .job-card {
+    background: white;
 
-        border: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
 
-        border-radius: 15px;
+    border-radius: 15px;
 
-        padding: 22px;
+    padding: 22px;
 
-        height: 100%;
+    height: 100%;
 
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-      }
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
 
-      .job-card:hover {
-        transform: translateY(-4px);
+  .job-card:hover {
+    transform: translateY(-4px);
 
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      }
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
 
-      .company-icon {
-        width: 50px;
-        height: 50px;
+  .company-icon {
+    width: 50px;
+    height: 50px;
 
-        border-radius: 12px;
+    border-radius: 12px;
 
-        background: #eff6ff;
+    background: #eff6ff;
 
-        color: #2563eb;
+    color: #2563eb;
 
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        font-size: 1.35rem;
+    font-size: 1.35rem;
 
-        flex-shrink: 0;
-      }
+    flex-shrink: 0;
+  }
 
-      .job-title {
-        font-size: 1.15rem;
-        font-weight: 700;
+  .job-title {
+    font-size: 1.15rem;
+    font-weight: 700;
 
-        color: #111827;
+    color: #111827;
 
-        text-decoration: none;
-      }
+    text-decoration: none;
+  }
 
-      .job-title:hover {
-        color: #2563eb;
-      }
+  .job-title:hover {
+    color: #2563eb;
+  }
 
-      .company-name {
-        color: #6b7280;
-        font-size: 0.9rem;
-      }
+  .company-name {
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
 
-      /* =========================
+  /* =========================
            JOB BADGES
         ========================= */
 
-      .job-badge {
-        display: inline-block;
+  .job-badge {
+    display: inline-block;
 
-        font-size: 0.78rem;
+    font-size: 0.78rem;
 
-        font-weight: 600;
+    font-weight: 600;
 
-        padding: 5px 9px;
+    padding: 5px 9px;
 
-        border-radius: 20px;
+    border-radius: 20px;
 
-        background: #eff6ff;
+    background: #eff6ff;
 
-        color: #1d4ed8;
-      }
+    color: #1d4ed8;
+  }
 
-      .job-badge.location {
-        background: #f3f4f6;
-        color: #4b5563;
-      }
+  .job-badge.location {
+    background: #f3f4f6;
+    color: #4b5563;
+  }
 
-      .job-badge.category {
-        background: #f3e8ff;
-        color: #7e22ce;
-      }
+  .job-badge.category {
+    background: #f3e8ff;
+    color: #7e22ce;
+  }
 
-      /* =========================
+  /* =========================
            INFO
         ========================= */
 
-      .info-item {
-        color: #4b5563;
-        font-size: 0.88rem;
-        margin-bottom: 7px;
-      }
+  .info-item {
+    color: #4b5563;
+    font-size: 0.88rem;
+    margin-bottom: 7px;
+  }
 
-      .info-item i {
-        width: 20px;
-        color: #2563eb;
-      }
+  .info-item i {
+    width: 20px;
+    color: #2563eb;
+  }
 
-      /* =========================
+  /* =========================
            DESCRIPTION
         ========================= */
 
-      .job-description {
-        color: #6b7280;
+  .job-description {
+    color: #6b7280;
 
-        font-size: 0.9rem;
+    font-size: 0.9rem;
 
-        line-height: 1.55;
+    line-height: 1.55;
 
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 
-        overflow: hidden;
-      }
+    overflow: hidden;
+  }
 
-      /* =========================
+  /* =========================
            DEADLINE
         ========================= */
 
-      .deadline {
-        border-top: 1px solid #e5e7eb;
+  .deadline {
+    border-top: 1px solid #e5e7eb;
 
-        margin-top: 18px;
-        padding-top: 15px;
+    margin-top: 18px;
+    padding-top: 15px;
 
-        color: #6b7280;
+    color: #6b7280;
 
-        font-size: 0.88rem;
-      }
+    font-size: 0.88rem;
+  }
 
-      .deadline strong {
-        color: #dc2626;
-      }
+  .deadline strong {
+    color: #dc2626;
+  }
 
-      /* =========================
+  /* =========================
            BUTTON
         ========================= */
 
-      .details-button {
-        border-radius: 9px;
+  .details-button {
+    border-radius: 9px;
 
-        font-weight: 600;
+    font-weight: 600;
 
-        padding: 9px 16px;
-      }
+    padding: 9px 16px;
+  }
 
-      /* =========================
+  /* =========================
            ADVERTISEMENT
         ========================= */
 
-      .ad-box {
-        min-height: 90px;
+  .ad-box {
+    min-height: 90px;
 
-        background: #ffffff;
+    background: #ffffff;
 
-        border: 1px dashed #d1d5db;
+    border: 1px dashed #d1d5db;
 
-        border-radius: 12px;
+    border-radius: 12px;
 
-        display: flex;
+    display: flex;
 
-        align-items: center;
+    align-items: center;
 
-        justify-content: center;
+    justify-content: center;
 
-        color: #9ca3af;
+    color: #9ca3af;
 
-        font-size: 0.8rem;
-      }
+    font-size: 0.8rem;
+  }
 
-      /* =========================
+  /* =========================
            FOOTER
         ========================= */
 
-      footer {
-        background: #111827;
+  footer {
+    background: #111827;
 
-        color: #9ca3af;
+    color: #9ca3af;
 
-        margin-top: 60px;
+    margin-top: 60px;
 
-        padding: 40px 20px;
-      }
+    padding: 40px 20px;
+  }
 
-      footer h5 {
-        color: white;
-        font-weight: 700;
-      }
+  footer h5 {
+    color: white;
+    font-weight: 700;
+  }
 
-      footer a {
-        color: #9ca3af;
-        text-decoration: none;
-      }
+  footer a {
+    color: #9ca3af;
+    text-decoration: none;
+  }
 
-      footer a:hover {
-        color: white;
-      }
+  footer a:hover {
+    color: white;
+  }
 
-      /* =========================
+  /* =========================
            MOBILE
         ========================= */
 
-      @media (max-width: 768px) {
-        .jobs-hero {
-          padding: 40px 20px;
-        }
+  @media (max-width: 768px) {
+    .jobs-hero {
+      padding: 40px 20px;
+    }
 
-        .jobs-hero h1 {
-          font-size: 1.9rem;
-        }
+    .jobs-hero h1 {
+      font-size: 1.9rem;
+    }
 
-        .search-box {
-          margin-top: -15px;
-        }
-      }
-    </style>
+    .search-box {
+      margin-top: -15px;
+    }
+  }
+</style>
 
-  </head>
+{{! Hero Section }}
+<section class="jobs-hero text-center">
 
-  <body>
+  <div class="container">
 
-    <!-- =========================
-     NAVBAR
-========================= -->
+    <h1>
+      Find Your Next Job
+    </h1>
 
-    <nav class="navbar navbar-expand-lg">
+    <p>
+      Discover the latest jobs and employment opportunities from organizations
+      in Ethiopia and beyond.
+    </p>
 
-      <div class="container">
+  </div>
 
-        <a class="navbar-brand" href="/">
-          ET24<span>Jobs</span>
-        </a>
+</section>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+{{! Search }}
+<div class="container search-box">
 
-          <span class="navbar-toggler-icon"></span>
+  <div class="search-card">
 
-        </button>
+    <form action="/jobs" method="GET">
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
+      <div class="row g-2">
 
-          <ul class="navbar-nav ms-auto">
+        <div class="col-md-9">
 
-            <li class="nav-item">
+          <input
+            type="search"
+            name="q"
+            class="form-control search-input"
+            placeholder="Search jobs, companies, skills..."
+            value="{{searchQuery}}"
+          />
 
-              <a class="nav-link" href="/">
-                Home
-              </a>
+        </div>
 
-            </li>
+        <div class="col-md-3">
 
-            <li class="nav-item">
+          <button type="submit" class="btn btn-primary w-100 search-button">
 
-              <a class="nav-link active" href="/jobs">
-                Jobs
-              </a>
+            <i class="bi bi-search"></i>
 
-            </li>
+            Search Jobs
 
-            <li class="nav-item">
-
-              <a class="nav-link" href="/scholarships">
-                Scholarships
-              </a>
-
-            </li>
-
-            <li class="nav-item">
-
-              <a class="nav-link" href="/internships">
-                Internships
-              </a>
-
-            </li>
-
-            <li class="nav-item">
-
-              <a class="nav-link" href="/jobs/post">
-                Post a Job
-              </a>
-
-            </li>
-
-          </ul>
+          </button>
 
         </div>
 
       </div>
 
-    </nav>
+    </form>
 
-    <!-- =========================
-     HERO
-========================= -->
+  </div>
 
-    <section class="jobs-hero text-center">
+</div>
 
-      <div class="container">
+<main class="container my-5">
 
-        <h1>
-          Find Your Next Job
-        </h1>
+  <!-- Heading -->
 
-        <p>
-          Discover the latest jobs and employment opportunities from
-          organizations in Ethiopia and beyond.
-        </p>
+  <div class="d-flex justify-content-between align-items-center mb-4">
 
-      </div>
+    <div>
 
-    </section>
+      <h2 class="section-title mb-1">
+        Latest Jobs
+      </h2>
 
-    <!-- =========================
-     SEARCH
-========================= -->
+      <div class="result-count">
 
-    <div class="container search-box">
-
-      <div class="search-card">
-
-        <form action="/jobs" method="GET">
-
-          <div class="row g-2">
-
-            <div class="col-md-9">
-
-              <input
-                type="search"
-                name="q"
-                class="form-control search-input"
-                placeholder="Search jobs, companies, skills..."
-                value="{{searchQuery}}"
-              />
-
-            </div>
-
-            <div class="col-md-3">
-
-              <button type="submit" class="btn btn-primary w-100 search-button">
-
-                <i class="bi bi-search"></i>
-
-                Search Jobs
-
-              </button>
-
-            </div>
-
-          </div>
-
-        </form>
+        Showing
+        {{jobs.length}}
+        job opportunities
 
       </div>
 
     </div>
 
-    <!-- =========================
-     MAIN CONTENT
-========================= -->
+  </div>
 
-    <main class="container my-5">
-
-      <!-- Heading -->
-
-      <div class="d-flex justify-content-between align-items-center mb-4">
-
-        <div>
-
-          <h2 class="section-title mb-1">
-            Latest Jobs
-          </h2>
-
-          <div class="result-count">
-
-            Showing
-            {{jobs.length}}
-            job opportunities
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- =========================
+  <!-- =========================
          JOB CARDS
     ========================= -->
 
-      <div class="row g-4">
+  <div class="row g-4">
 
-        {{#each jobs}}
+    {{#each jobs}}
 
-          <div class="col-lg-6">
+      <div class="col-lg-6">
 
-            <article class="job-card">
+        <article class="job-card">
 
-              <!-- Header -->
+          <!-- Header -->
 
-              <div class="d-flex gap-3 mb-3">
+          <div class="d-flex gap-3 mb-3">
 
-                <div class="company-icon">
+            <div class="company-icon">
 
-                  <i class="bi bi-briefcase-fill"></i>
+              <i class="bi bi-briefcase-fill"></i>
 
-                </div>
+            </div>
 
-                <div class="flex-grow-1">
+            <div class="flex-grow-1">
 
-                  <a href="/jobs/{{slug}}" class="job-title">
+              <a href="/jobs/{{slug}}" class="job-title">
 
-                    {{title}}
+                {{title}}
 
-                  </a>
+              </a>
 
-                  <div class="company-name mt-1">
+              <div class="company-name mt-1">
 
-                    <i class="bi bi-building"></i>
+                <i class="bi bi-building"></i>
 
-                    {{companyName}}
-
-                  </div>
-
-                </div>
+                {{companyName}}
 
               </div>
 
-              <!-- Badges -->
-
-              <div class="mb-3">
-
-                {{#if employmentType}}
-
-                  <span class="job-badge">
-
-                    <i class="bi bi-clock"></i>
-
-                    {{employmentType}}
-
-                  </span>
-
-                {{/if}}
-
-                {{#if location}}
-
-                  <span class="job-badge location ms-1">
-
-                    <i class="bi bi-geo-alt"></i>
-
-                    {{location}}
-
-                  </span>
-
-                {{/if}}
-
-                {{#if categoryName}}
-
-                  <span class="job-badge category ms-1">
-
-                    {{categoryName}}
-
-                  </span>
-
-                {{/if}}
-
-              </div>
-
-              <!-- Job Information -->
-
-              <div>
-
-                {{#if salary}}
-
-                  <div class="info-item">
-
-                    <i class="bi bi-cash-stack"></i>
-
-                    {{salary}}
-
-                  </div>
-
-                {{/if}}
-
-                {{#if qualifications}}
-
-                  <div class="info-item">
-
-                    <i class="bi bi-mortarboard"></i>
-
-                    {{qualifications}}
-
-                  </div>
-
-                {{/if}}
-
-                {{#if location}}
-
-                  <div class="info-item">
-
-                    <i class="bi bi-pin-map"></i>
-
-                    {{location}}
-
-                  </div>
-
-                {{/if}}
-
-              </div>
-
-              <!-- Description -->
-
-              {{#if description}}
-
-                <p class="job-description mt-3 mb-0">
-
-                  {{description}}
-
-                </p>
-
-              {{/if}}
-
-              <!-- Deadline -->
-
-              <div class="deadline">
-
-                <i class="bi bi-calendar-event"></i>
-
-                Application deadline:
-
-                {{#if deadline}}
-
-                  <strong>
-                    {{deadline}}
-                  </strong>
-
-                {{else}}
-
-                  <strong>
-                    Not specified
-                  </strong>
-
-                {{/if}}
-
-              </div>
-
-              <!-- Button -->
-
-              <div class="mt-3">
-
-                <a href="/jobs/{{slug}}" class="btn btn-primary details-button">
-
-                  View Job
-
-                  <i class="bi bi-arrow-right"></i>
-
-                </a>
-
-              </div>
-
-            </article>
+            </div>
 
           </div>
 
-        {{/each}}
-
-      </div>
-
-      <!-- Empty State -->
-
-      {{#unless jobs.length}}
-
-        <div class="text-center py-5">
+          <!-- Badges -->
 
           <div class="mb-3">
 
-            <i
-              class="bi bi-briefcase"
-              style="font-size: 3rem; color: #9ca3af;"
-            ></i>
+            {{#if employmentType}}
+
+              <span class="job-badge">
+
+                <i class="bi bi-clock"></i>
+
+                {{employmentType}}
+
+              </span>
+
+            {{/if}}
+
+            {{#if location}}
+
+              <span class="job-badge location ms-1">
+
+                <i class="bi bi-geo-alt"></i>
+
+                {{location}}
+
+              </span>
+
+            {{/if}}
+
+            {{#if categoryName}}
+
+              <span class="job-badge category ms-1">
+
+                {{categoryName}}
+
+              </span>
+
+            {{/if}}
 
           </div>
 
-          <h4>
-            No jobs found
-          </h4>
+          <!-- Job Information -->
 
-          <p class="text-muted">
-            Try searching with a different keyword.
-          </p>
+          <div>
 
-        </div>
+            {{#if salary}}
 
-      {{/unless}}
+              <div class="info-item">
 
-    </main>
+                <i class="bi bi-cash-stack"></i>
 
-    <!-- =========================
-     FOOTER
-========================= -->
+                {{salary}}
 
-    <footer>
+              </div>
 
-      <div class="container">
+            {{/if}}
 
-        <div class="row g-4">
+            {{#if qualifications}}
 
-          <div class="col-md-5">
+              <div class="info-item">
 
-            <h5>
-              ET24Jobs
-            </h5>
+                <i class="bi bi-mortarboard"></i>
 
-            <p class="mt-3">
+                {{qualifications}}
 
-              Find jobs, scholarships and internships in Ethiopia and around the
-              world.
+              </div>
+
+            {{/if}}
+
+            {{#if location}}
+
+              <div class="info-item">
+
+                <i class="bi bi-pin-map"></i>
+
+                {{location}}
+
+              </div>
+
+            {{/if}}
+
+          </div>
+
+          <!-- Description -->
+
+          {{#if description}}
+
+            <p class="job-description mt-3 mb-0">
+
+              {{description}}
 
             </p>
 
-          </div>
+          {{/if}}
 
-          <div class="col-md-3">
+          <!-- Deadline -->
 
-            <h5>
-              Explore
-            </h5>
+          <div class="deadline">
 
-            <ul class="list-unstyled mt-3">
+            <i class="bi bi-calendar-event"></i>
 
-              <li class="mb-2">
+            Application deadline:
 
-                <a href="/jobs">
-                  Jobs
-                </a>
+            {{#if deadline}}
 
-              </li>
+              <strong>
+                {{deadline}}
+              </strong>
 
-              <li class="mb-2">
+            {{else}}
 
-                <a href="/scholarships">
-                  Scholarships
-                </a>
+              <strong>
+                Not specified
+              </strong>
 
-              </li>
-
-              <li>
-
-                <a href="/internships">
-                  Internships
-                </a>
-
-              </li>
-
-            </ul>
+            {{/if}}
 
           </div>
 
-          <div class="col-md-4">
+          <!-- Button -->
 
-            <h5>
-              ET24Jobs
-            </h5>
+          <div class="mt-3">
 
-            <p class="mt-3">
+            <a href="/jobs/{{slug}}" class="btn btn-primary details-button">
 
-              Helping job seekers discover new employment opportunities.
+              View Job
 
-            </p>
+              <i class="bi bi-arrow-right"></i>
+
+            </a>
 
           </div>
 
-        </div>
-
-        <hr class="border-secondary my-4" />
-
-        <div class="text-center">
-
-          <small>
-            © 2026 ET24Jobs. All rights reserved.
-          </small>
-
-        </div>
+        </article>
 
       </div>
 
-    </footer>
+    {{/each}}
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
+  </div>
 
-  </body>
+  <!-- Empty State -->
 
-</html>
+  {{#unless jobs.length}}
+
+    <div class="text-center py-5">
+
+      <div class="mb-3">
+
+        <i class="bi bi-briefcase" style="font-size: 3rem; color: #9ca3af;"></i>
+
+      </div>
+
+      <h4>
+        No jobs found
+      </h4>
+
+      <p class="text-muted">
+        Try searching with a different keyword.
+      </p>
+
+    </div>
+
+  {{/unless}}
+
+</main>

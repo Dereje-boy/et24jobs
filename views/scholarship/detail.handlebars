@@ -1,1451 +1,1240 @@
-<html lang="en">
+<title>{{scholarship.title}} | ET24Jobs</title>
 
-  <head>
+<meta
+  name="description"
+  content="{{scholarship.title}} scholarship — eligibility, funding, deadline and application information on ET24Jobs."
+/>
 
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>{{scholarship.title}} | ET24Jobs</title>
-
-    <meta
-      name="description"
-      content="{{scholarship.title}} scholarship — eligibility, funding, deadline and application information on ET24Jobs."
-    />
-
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    />
-
-    <style>
-      /* =========================
+<style>
+  /* =========================
            GLOBAL
         ========================= */
 
-      body {
-        background: #f5f7fb;
+  body {
+    background: #f5f7fb;
 
-        font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
-        color: #1f2937;
-      }
+    color: #1f2937;
+  }
 
-      /* =========================
+  /* =========================
            NAVBAR
         ========================= */
 
-      .navbar {
-        background: #ffffff;
+  .navbar {
+    background: #ffffff;
 
-        border-bottom: 1px solid #e5e7eb;
-      }
+    border-bottom: 1px solid #e5e7eb;
+  }
 
-      .navbar-brand {
-        font-size: 1.45rem;
+  .navbar-brand {
+    font-size: 1.45rem;
 
-        font-weight: 800;
+    font-weight: 800;
 
-        color: #2563eb !important;
-      }
+    color: #2563eb !important;
+  }
 
-      .navbar-brand span {
-        color: #111827;
-      }
+  .navbar-brand span {
+    color: #111827;
+  }
 
-      .nav-link {
-        color: #374151 !important;
+  .nav-link {
+    color: #374151 !important;
 
-        font-weight: 500;
+    font-weight: 500;
 
-        margin-left: 10px;
-      }
+    margin-left: 10px;
+  }
 
-      .nav-link:hover,
-      .nav-link.active {
-        color: #2563eb !important;
-      }
+  .nav-link:hover,
+  .nav-link.active {
+    color: #2563eb !important;
+  }
 
-      /* =========================
+  /* =========================
            BREADCRUMB
            ========================= */
 
-      .breadcrumb-wrapper {
-        background: #ffffff;
+  .breadcrumb-wrapper {
+    background: #ffffff;
 
-        border-bottom: 1px solid #e5e7eb;
-      }
+    border-bottom: 1px solid #e5e7eb;
+  }
 
-      .breadcrumb {
-        margin-bottom: 0;
+  .breadcrumb {
+    margin-bottom: 0;
 
-        padding: 14px 0;
-      }
+    padding: 14px 0;
+  }
 
-      .breadcrumb a {
-        color: #2563eb;
+  .breadcrumb a {
+    color: #2563eb;
 
-        text-decoration: none;
-      }
+    text-decoration: none;
+  }
 
-      /* =========================
+  /* =========================
            AD
            ========================= */
 
-      .ad-box {
-        min-height: 90px;
+  .ad-box {
+    min-height: 90px;
 
-        background: #ffffff;
+    background: #ffffff;
 
-        border: 1px dashed #d1d5db;
+    border: 1px dashed #d1d5db;
 
-        border-radius: 12px;
+    border-radius: 12px;
 
-        display: flex;
+    display: flex;
 
-        align-items: center;
+    align-items: center;
 
-        justify-content: center;
+    justify-content: center;
 
-        color: #9ca3af;
+    color: #9ca3af;
 
-        font-size: 0.8rem;
-      }
+    font-size: 0.8rem;
+  }
 
-      /* =========================
+  /* =========================
            SCHOLARSHIP HEADER
            ========================= */
 
-      .scholarship-header {
-        background: #ffffff;
+  .scholarship-header {
+    background: #ffffff;
 
-        border: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
 
-        border-radius: 16px;
+    border-radius: 16px;
 
-        padding: 28px;
+    padding: 28px;
 
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
-      }
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+  }
 
-      .scholarship-icon {
-        width: 65px;
+  .scholarship-icon {
+    width: 65px;
 
-        height: 65px;
+    height: 65px;
 
-        border-radius: 14px;
+    border-radius: 14px;
 
-        background: #eff6ff;
+    background: #eff6ff;
 
-        color: #2563eb;
+    color: #2563eb;
 
-        display: flex;
+    display: flex;
 
-        align-items: center;
+    align-items: center;
 
-        justify-content: center;
+    justify-content: center;
 
-        font-size: 1.7rem;
+    font-size: 1.7rem;
 
-        flex-shrink: 0;
-      }
+    flex-shrink: 0;
+  }
 
-      .scholarship-title {
-        font-size: 2rem;
+  .scholarship-title {
+    font-size: 2rem;
 
-        font-weight: 800;
+    font-weight: 800;
 
-        color: #111827;
+    color: #111827;
 
-        line-height: 1.25;
-      }
+    line-height: 1.25;
+  }
 
-      .provider-name {
-        color: #6b7280;
+  .provider-name {
+    color: #6b7280;
 
-        font-size: 1rem;
-      }
+    font-size: 1rem;
+  }
 
-      /* =========================
+  /* =========================
            BADGES
            ========================= */
 
-      .scholarship-badge {
-        display: inline-block;
+  .scholarship-badge {
+    display: inline-block;
 
-        font-size: 0.8rem;
+    font-size: 0.8rem;
 
-        font-weight: 600;
+    font-weight: 600;
 
-        padding: 6px 10px;
+    padding: 6px 10px;
 
-        border-radius: 20px;
+    border-radius: 20px;
 
-        background: #eff6ff;
+    background: #eff6ff;
 
-        color: #1d4ed8;
+    color: #1d4ed8;
 
-        margin-right: 5px;
+    margin-right: 5px;
 
-        margin-bottom: 5px;
-      }
+    margin-bottom: 5px;
+  }
 
-      .scholarship-badge.location {
-        background: #f3f4f6;
+  .scholarship-badge.location {
+    background: #f3f4f6;
 
-        color: #4b5563;
-      }
+    color: #4b5563;
+  }
 
-      .scholarship-badge.field {
-        background: #f3e8ff;
+  .scholarship-badge.field {
+    background: #f3e8ff;
 
-        color: #7e22ce;
-      }
+    color: #7e22ce;
+  }
 
-      /* =========================
+  /* =========================
            CONTENT CARDS
            ========================= */
 
-      .content-card {
-        background: #ffffff;
+  .content-card {
+    background: #ffffff;
 
-        border: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
 
-        border-radius: 15px;
+    border-radius: 15px;
 
-        padding: 25px;
+    padding: 25px;
 
-        margin-bottom: 22px;
-      }
+    margin-bottom: 22px;
+  }
 
-      .section-title {
-        font-size: 1.25rem;
+  .section-title {
+    font-size: 1.25rem;
 
-        font-weight: 800;
+    font-weight: 800;
 
-        color: #111827;
+    color: #111827;
 
-        margin-bottom: 18px;
-      }
+    margin-bottom: 18px;
+  }
 
-      .scholarship-description {
-        color: #4b5563;
+  .scholarship-description {
+    color: #4b5563;
 
-        line-height: 1.75;
+    line-height: 1.75;
 
-        white-space: pre-line;
-      }
+    white-space: pre-line;
+  }
 
-      /* =========================
+  /* =========================
            INFORMATION ROWS
            ========================= */
 
-      .info-row {
-        display: flex;
+  .info-row {
+    display: flex;
 
-        padding: 13px 0;
+    padding: 13px 0;
 
-        border-bottom: 1px solid #f0f0f0;
-      }
+    border-bottom: 1px solid #f0f0f0;
+  }
 
-      .info-row:last-child {
-        border-bottom: none;
-      }
+  .info-row:last-child {
+    border-bottom: none;
+  }
 
-      .info-label {
-        width: 190px;
+  .info-label {
+    width: 190px;
 
-        font-weight: 600;
+    font-weight: 600;
 
-        color: #374151;
-      }
+    color: #374151;
+  }
 
-      .info-value {
-        color: #6b7280;
+  .info-value {
+    color: #6b7280;
 
-        flex: 1;
-      }
+    flex: 1;
+  }
 
-      /* =========================
+  /* =========================
            LISTS
            ========================= */
 
-      .detail-list {
-        padding-left: 20px;
+  .detail-list {
+    padding-left: 20px;
 
-        color: #4b5563;
+    color: #4b5563;
 
-        line-height: 1.8;
-      }
+    line-height: 1.8;
+  }
 
-      /* =========================
+  /* =========================
            APPLICATION CARD
            ========================= */
 
-      .apply-card {
-        background: #ffffff;
+  .apply-card {
+    background: #ffffff;
 
-        border: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
 
-        border-radius: 15px;
+    border-radius: 15px;
 
-        padding: 24px;
+    padding: 24px;
 
-        position: sticky;
+    position: sticky;
 
-        top: 20px;
-      }
+    top: 20px;
+  }
 
-      .apply-title {
-        font-size: 1.2rem;
+  .apply-title {
+    font-size: 1.2rem;
 
-        font-weight: 800;
+    font-weight: 800;
 
-        color: #111827;
-      }
+    color: #111827;
+  }
 
-      .deadline-box {
-        background: #fff7ed;
+  .deadline-box {
+    background: #fff7ed;
 
-        border: 1px solid #fed7aa;
+    border: 1px solid #fed7aa;
 
-        color: #9a3412;
+    color: #9a3412;
 
-        border-radius: 10px;
+    border-radius: 10px;
 
-        padding: 13px;
+    padding: 13px;
 
-        font-size: 0.9rem;
+    font-size: 0.9rem;
 
-        margin: 18px 0;
-      }
+    margin: 18px 0;
+  }
 
-      .funding-box {
-        background: #f0fdf4;
+  .funding-box {
+    background: #f0fdf4;
 
-        border: 1px solid #bbf7d0;
+    border: 1px solid #bbf7d0;
 
-        color: #166534;
+    color: #166534;
 
-        border-radius: 10px;
+    border-radius: 10px;
 
-        padding: 13px;
+    padding: 13px;
 
-        font-size: 0.9rem;
+    font-size: 0.9rem;
 
-        margin-bottom: 15px;
-      }
+    margin-bottom: 15px;
+  }
 
-      .apply-button {
-        width: 100%;
+  .apply-button {
+    width: 100%;
 
-        border-radius: 10px;
+    border-radius: 10px;
 
-        padding: 12px;
+    padding: 12px;
 
-        font-weight: 700;
+    font-weight: 700;
 
-        font-size: 1rem;
-      }
+    font-size: 1rem;
+  }
 
-      .source-note {
-        font-size: 0.78rem;
+  .source-note {
+    font-size: 0.78rem;
 
-        color: #9ca3af;
+    color: #9ca3af;
 
-        line-height: 1.5;
+    line-height: 1.5;
 
-        margin-top: 15px;
-      }
+    margin-top: 15px;
+  }
 
-      /* =========================
+  /* =========================
            SHARE
            ========================= */
 
-      .share-button {
-        border: 1px solid #d1d5db;
+  .share-button {
+    border: 1px solid #d1d5db;
 
-        background: #ffffff;
+    background: #ffffff;
 
-        color: #374151;
+    color: #374151;
 
-        border-radius: 8px;
+    border-radius: 8px;
 
-        padding: 7px 12px;
+    padding: 7px 12px;
 
-        font-size: 0.85rem;
-      }
+    font-size: 0.85rem;
+  }
 
-      .share-button:hover {
-        background: #f3f4f6;
-      }
+  .share-button:hover {
+    background: #f3f4f6;
+  }
 
-      /* =========================
+  /* =========================
            RELATED SCHOLARSHIPS
            ========================= */
 
-      .related-card {
-        background: #ffffff;
+  .related-card {
+    background: #ffffff;
 
-        border: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb;
 
-        border-radius: 14px;
+    border-radius: 14px;
 
-        padding: 18px;
+    padding: 18px;
 
-        height: 100%;
+    height: 100%;
 
-        transition:
-          transform 0.2s ease,
-          box-shadow 0.2s ease;
-      }
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
 
-      .related-card:hover {
-        transform: translateY(-3px);
+  .related-card:hover {
+    transform: translateY(-3px);
 
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
-      }
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  }
 
-      .related-icon {
-        width: 42px;
+  .related-icon {
+    width: 42px;
 
-        height: 42px;
+    height: 42px;
 
-        border-radius: 10px;
+    border-radius: 10px;
 
-        background: #eff6ff;
+    background: #eff6ff;
 
-        color: #2563eb;
+    color: #2563eb;
 
-        display: flex;
+    display: flex;
 
-        align-items: center;
+    align-items: center;
 
-        justify-content: center;
+    justify-content: center;
 
-        flex-shrink: 0;
-      }
+    flex-shrink: 0;
+  }
 
-      .related-title {
-        color: #111827;
+  .related-title {
+    color: #111827;
 
-        font-weight: 700;
+    font-weight: 700;
 
-        text-decoration: none;
+    text-decoration: none;
 
-        line-height: 1.35;
-      }
+    line-height: 1.35;
+  }
 
-      .related-title:hover {
-        color: #2563eb;
-      }
+  .related-title:hover {
+    color: #2563eb;
+  }
 
-      .related-provider {
-        color: #6b7280;
+  .related-provider {
+    color: #6b7280;
 
-        font-size: 0.85rem;
-      }
+    font-size: 0.85rem;
+  }
 
-      .related-info {
-        color: #6b7280;
+  .related-info {
+    color: #6b7280;
 
-        font-size: 0.82rem;
+    font-size: 0.82rem;
 
-        margin-top: 10px;
-      }
+    margin-top: 10px;
+  }
 
-      /* =========================
+  /* =========================
            FOOTER
            ========================= */
 
-      footer {
-        background: #111827;
+  footer {
+    background: #111827;
 
-        color: #9ca3af;
+    color: #9ca3af;
 
-        margin-top: 60px;
+    margin-top: 60px;
 
-        padding: 40px 20px;
-      }
+    padding: 40px 20px;
+  }
 
-      footer h5 {
-        color: white;
+  footer h5 {
+    color: white;
 
-        font-weight: 700;
-      }
+    font-weight: 700;
+  }
 
-      footer a {
-        color: #9ca3af;
+  footer a {
+    color: #9ca3af;
 
-        text-decoration: none;
-      }
+    text-decoration: none;
+  }
 
-      footer a:hover {
-        color: white;
-      }
+  footer a:hover {
+    color: white;
+  }
 
-      /* =========================
+  /* =========================
            MOBILE
            ========================= */
 
-      @media (max-width: 768px) {
-        .scholarship-title {
-          font-size: 1.55rem;
-        }
+  @media (max-width: 768px) {
+    .scholarship-title {
+      font-size: 1.55rem;
+    }
 
-        .scholarship-header {
-          padding: 20px;
-        }
+    .scholarship-header {
+      padding: 20px;
+    }
 
-        .content-card {
-          padding: 20px;
-        }
+    .content-card {
+      padding: 20px;
+    }
 
-        .info-row {
-          display: block;
-        }
+    .info-row {
+      display: block;
+    }
 
-        .info-label {
-          width: auto;
+    .info-label {
+      width: auto;
 
-          margin-bottom: 4px;
-        }
+      margin-bottom: 4px;
+    }
 
-        .apply-card {
-          position: static;
-        }
-      }
-    </style>
+    .apply-card {
+      position: static;
+    }
+  }
+</style>
 
-  </head>
-
-  <body>
-
-    <!-- =========================
-     NAVBAR
-========================= -->
-
-    <nav class="navbar navbar-expand-lg">
-
-      <div class="container">
-
-        <a class="navbar-brand" href="/">
-
-          ET24<span>Jobs</span>
-
-        </a>
-
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-
-          <span class="navbar-toggler-icon"></span>
-
-        </button>
-
-        <div class="collapse navbar-collapse" id="mainNavbar">
-
-          <ul class="navbar-nav ms-auto">
-
-            <li class="nav-item">
-
-              <a class="nav-link" href="/">
-                Home
-              </a>
-
-            </li>
-
-            <li class="nav-item">
-
-              <a class="nav-link" href="/jobs">
-                Jobs
-              </a>
-
-            </li>
-
-            <li class="nav-item">
-
-              <a class="nav-link active" href="/scholarships">
-                Scholarships
-              </a>
-
-            </li>
-
-            <li class="nav-item">
-
-              <a class="nav-link" href="/internships">
-                Internships
-              </a>
-
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-
-    </nav>
-
-    <!-- =========================
+<!-- =========================
      BREADCRUMB
 ========================= -->
 
-    <div class="breadcrumb-wrapper">
+<div class="breadcrumb-wrapper">
 
-      <div class="container">
+  <div class="container">
 
-        <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb">
 
-          <ol class="breadcrumb">
+      <ol class="breadcrumb">
 
-            <li class="breadcrumb-item">
+        <li class="breadcrumb-item">
 
-              <a href="/">
+          <a href="/">
 
-                Home
+            Home
 
-              </a>
+          </a>
 
-            </li>
+        </li>
 
-            <li class="breadcrumb-item">
+        <li class="breadcrumb-item">
 
-              <a href="/scholarships">
+          <a href="/scholarships">
 
-                Scholarships
+            Scholarships
 
-              </a>
+          </a>
 
-            </li>
+        </li>
 
-            <li class="breadcrumb-item active" aria-current="page">
+        <li class="breadcrumb-item active" aria-current="page">
 
-              {{scholarship.title}}
+          {{scholarship.title}}
 
-            </li>
+        </li>
 
-          </ol>
+      </ol>
 
-        </nav>
+    </nav>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container my-4">
+
+  <!-- TOP AD -->
+
+  <!-- =========================
+         SCHOLARSHIP HEADER
+    ========================= -->
+
+  <section class="scholarship-header mb-4">
+
+    <div class="d-flex gap-3">
+
+      <div class="scholarship-icon">
+
+        <i class="bi bi-mortarboard-fill"></i>
+
+      </div>
+
+      <div class="flex-grow-1">
+
+        <h1 class="scholarship-title mb-2">
+
+          {{scholarship.title}}
+
+        </h1>
+
+        <div class="provider-name mb-3">
+
+          <i class="bi bi-building"></i>
+
+          {{scholarship.providerName}}
+
+        </div>
+
+        <div>
+
+          {{#if scholarship.studyLevel}}
+
+            <span class="scholarship-badge">
+
+              <i class="bi bi-mortarboard"></i>
+
+              {{scholarship.studyLevel}}
+
+            </span>
+
+          {{/if}}
+
+          {{#if scholarship.location}}
+
+            <span class="scholarship-badge location">
+
+              <i class="bi bi-geo-alt"></i>
+
+              {{scholarship.location}}
+
+            </span>
+
+          {{/if}}
+
+          {{#if scholarship.fieldOfStudy}}
+
+            <span class="scholarship-badge field">
+
+              {{scholarship.fieldOfStudy}}
+
+            </span>
+
+          {{/if}}
+
+        </div>
 
       </div>
 
     </div>
 
-    <!-- =========================
-     MAIN
-========================= -->
+    <!-- SHARE -->
 
-    <main class="container my-4">
+    <div class="mt-4 pt-3 border-top">
 
-      <!-- TOP AD -->
+      <button class="share-button" onclick="shareScholarship()">
 
-      <!-- =========================
-         SCHOLARSHIP HEADER
+        <i class="bi bi-share"></i>
+
+        Share Scholarship
+
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+         CONTENT + SIDEBAR
     ========================= -->
 
-      <section class="scholarship-header mb-4">
+  <div class="row g-4">
 
-        <div class="d-flex gap-3">
+    <!-- =====================
+             LEFT COLUMN
+        ====================== -->
 
-          <div class="scholarship-icon">
+    <div class="col-lg-8">
 
-            <i class="bi bi-mortarboard-fill"></i>
+      <!-- Overview -->
 
-          </div>
+      <section class="content-card">
 
-          <div class="flex-grow-1">
+        <h2 class="section-title">
 
-            <h1 class="scholarship-title mb-2">
+          Scholarship Overview
 
-              {{scholarship.title}}
+        </h2>
 
-            </h1>
+        <div class="scholarship-description">
 
-            <div class="provider-name mb-3">
+          {{scholarship.description}}
 
-              <i class="bi bi-building"></i>
+        </div>
+
+      </section>
+
+      <!-- Scholarship Details -->
+
+      <section class="content-card">
+
+        <h2 class="section-title">
+
+          Scholarship Details
+
+        </h2>
+
+        {{#if scholarship.providerName}}
+
+          <div class="info-row">
+
+            <div class="info-label">
+
+              Scholarship Provider
+
+            </div>
+
+            <div class="info-value">
 
               {{scholarship.providerName}}
 
             </div>
 
-            <div>
+          </div>
 
-              {{#if scholarship.studyLevel}}
+        {{/if}}
 
-                <span class="scholarship-badge">
+        {{#if scholarship.studyLevel}}
 
-                  <i class="bi bi-mortarboard"></i>
+          <div class="info-row">
 
-                  {{scholarship.studyLevel}}
+            <div class="info-label">
 
-                </span>
+              Study Level
 
-              {{/if}}
+            </div>
 
-              {{#if scholarship.location}}
+            <div class="info-value">
 
-                <span class="scholarship-badge location">
-
-                  <i class="bi bi-geo-alt"></i>
-
-                  {{scholarship.location}}
-
-                </span>
-
-              {{/if}}
-
-              {{#if scholarship.fieldOfStudy}}
-
-                <span class="scholarship-badge field">
-
-                  {{scholarship.fieldOfStudy}}
-
-                </span>
-
-              {{/if}}
+              {{scholarship.studyLevel}}
 
             </div>
 
           </div>
 
-        </div>
+        {{/if}}
 
-        <!-- SHARE -->
+        {{#if scholarship.fieldOfStudy}}
 
-        <div class="mt-4 pt-3 border-top">
+          <div class="info-row">
 
-          <button class="share-button" onclick="shareScholarship()">
+            <div class="info-label">
 
-            <i class="bi bi-share"></i>
+              Field of Study
 
-            Share Scholarship
+            </div>
 
-          </button>
+            <div class="info-value">
 
-        </div>
+              {{scholarship.fieldOfStudy}}
+
+            </div>
+
+          </div>
+
+        {{/if}}
+
+        {{#if scholarship.location}}
+
+          <div class="info-row">
+
+            <div class="info-label">
+
+              Study Location
+
+            </div>
+
+            <div class="info-value">
+
+              {{scholarship.location}}
+
+            </div>
+
+          </div>
+
+        {{/if}}
+
+        {{#if scholarship.degreeType}}
+
+          <div class="info-row">
+
+            <div class="info-label">
+
+              Degree / Program
+
+            </div>
+
+            <div class="info-value">
+
+              {{scholarship.degreeType}}
+
+            </div>
+
+          </div>
+
+        {{/if}}
+
+        {{#if scholarship.duration}}
+
+          <div class="info-row">
+
+            <div class="info-label">
+
+              Duration
+
+            </div>
+
+            <div class="info-value">
+
+              {{scholarship.duration}}
+
+            </div>
+
+          </div>
+
+        {{/if}}
+
+        {{#if scholarship.numberOfAwards}}
+
+          <div class="info-row">
+
+            <div class="info-label">
+
+              Number of Awards
+
+            </div>
+
+            <div class="info-value">
+
+              {{scholarship.numberOfAwards}}
+
+            </div>
+
+          </div>
+
+        {{/if}}
+
+        {{#if scholarship.applicationType}}
+
+          <div class="info-row">
+
+            <div class="info-label">
+
+              Application Type
+
+            </div>
+
+            <div class="info-value">
+
+              {{scholarship.applicationType}}
+
+            </div>
+
+          </div>
+
+        {{/if}}
 
       </section>
 
-      <!-- =========================
-         CONTENT + SIDEBAR
-    ========================= -->
+      <!-- Funding -->
 
-      <div class="row g-4">
+      {{#if scholarship.fundingDetails}}
 
-        <!-- =====================
-             LEFT COLUMN
-        ====================== -->
+        <section class="content-card">
 
-        <div class="col-lg-8">
+          <h2 class="section-title">
 
-          <!-- Overview -->
+            Funding & Benefits
 
-          <section class="content-card">
+          </h2>
 
-            <h2 class="section-title">
+          <div class="scholarship-description">
 
-              Scholarship Overview
+            {{scholarship.fundingDetails}}
 
-            </h2>
+          </div>
 
-            <div class="scholarship-description">
+        </section>
 
-              {{scholarship.description}}
+      {{/if}}
 
-            </div>
+      <!-- Eligibility -->
 
-          </section>
+      {{#if scholarship.eligibility}}
 
-          <!-- Scholarship Details -->
+        <section class="content-card">
 
-          <section class="content-card">
+          <h2 class="section-title">
 
-            <h2 class="section-title">
+            Eligibility Requirements
 
-              Scholarship Details
+          </h2>
 
-            </h2>
+          <div class="scholarship-description">
 
-            {{#if scholarship.providerName}}
+            {{scholarship.eligibility}}
 
-              <div class="info-row">
+          </div>
 
-                <div class="info-label">
+        </section>
 
-                  Scholarship Provider
+      {{/if}}
 
-                </div>
+      <!-- Required Documents -->
 
-                <div class="info-value">
+      {{#if scholarship.requiredDocuments}}
 
-                  {{scholarship.providerName}}
+        <section class="content-card">
 
-                </div>
+          <h2 class="section-title">
 
-              </div>
+            Required Documents
 
-            {{/if}}
+          </h2>
 
-            {{#if scholarship.studyLevel}}
+          <div class="scholarship-description">
 
-              <div class="info-row">
+            {{scholarship.requiredDocuments}}
 
-                <div class="info-label">
+          </div>
 
-                  Study Level
+        </section>
 
-                </div>
+      {{/if}}
 
-                <div class="info-value">
+      <!-- How To Apply -->
 
-                  {{scholarship.studyLevel}}
+      {{#if scholarship.applicationInstructions}}
 
-                </div>
+        <section class="content-card">
 
-              </div>
+          <h2 class="section-title">
 
-            {{/if}}
+            How to Apply
 
-            {{#if scholarship.fieldOfStudy}}
+          </h2>
 
-              <div class="info-row">
+          <div class="scholarship-description">
 
-                <div class="info-label">
+            {{scholarship.applicationInstructions}}
 
-                  Field of Study
+          </div>
 
-                </div>
+        </section>
 
-                <div class="info-value">
+      {{/if}}
 
-                  {{scholarship.fieldOfStudy}}
+      <!-- Source -->
 
-                </div>
+      <section class="content-card">
 
-              </div>
+        <h2 class="section-title">
 
-            {{/if}}
+          Scholarship Source
 
-            {{#if scholarship.location}}
+        </h2>
 
-              <div class="info-row">
+        <p class="text-muted mb-2">
 
-                <div class="info-label">
+          This scholarship information is published on ET24Jobs based on
+          information from the original scholarship provider or source.
 
-                  Study Location
+        </p>
 
-                </div>
+        {{#if scholarship.sourceName}}
 
-                <div class="info-value">
+          <div class="info-item mb-2">
 
-                  {{scholarship.location}}
+            <i class="bi bi-link-45deg"></i>
 
-                </div>
+            Source:
 
-              </div>
+            <strong>
 
-            {{/if}}
+              {{scholarship.sourceName}}
 
-            {{#if scholarship.degreeType}}
+            </strong>
 
-              <div class="info-row">
+          </div>
 
-                <div class="info-label">
+        {{/if}}
 
-                  Degree / Program
+        {{#if scholarship.sourceUrl}}
 
-                </div>
+          <a
+            href="{{scholarship.sourceUrl}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline-primary mt-2"
+          >
 
-                <div class="info-value">
+            <i class="bi bi-box-arrow-up-right"></i>
 
-                  {{scholarship.degreeType}}
+            Visit Original Source
 
-                </div>
+          </a>
 
-              </div>
+        {{/if}}
 
-            {{/if}}
+      </section>
 
-            {{#if scholarship.duration}}
+    </div>
 
-              <div class="info-row">
-
-                <div class="info-label">
-
-                  Duration
-
-                </div>
-
-                <div class="info-value">
-
-                  {{scholarship.duration}}
-
-                </div>
-
-              </div>
-
-            {{/if}}
-
-            {{#if scholarship.numberOfAwards}}
-
-              <div class="info-row">
-
-                <div class="info-label">
-
-                  Number of Awards
-
-                </div>
-
-                <div class="info-value">
-
-                  {{scholarship.numberOfAwards}}
-
-                </div>
-
-              </div>
-
-            {{/if}}
-
-            {{#if scholarship.applicationType}}
-
-              <div class="info-row">
-
-                <div class="info-label">
-
-                  Application Type
-
-                </div>
-
-                <div class="info-value">
-
-                  {{scholarship.applicationType}}
-
-                </div>
-
-              </div>
-
-            {{/if}}
-
-          </section>
-
-          <!-- Funding -->
-
-          {{#if scholarship.fundingDetails}}
-
-            <section class="content-card">
-
-              <h2 class="section-title">
-
-                Funding & Benefits
-
-              </h2>
-
-              <div class="scholarship-description">
-
-                {{scholarship.fundingDetails}}
-
-              </div>
-
-            </section>
-
-          {{/if}}
-
-          <!-- Eligibility -->
-
-          {{#if scholarship.eligibility}}
-
-            <section class="content-card">
-
-              <h2 class="section-title">
-
-                Eligibility Requirements
-
-              </h2>
-
-              <div class="scholarship-description">
-
-                {{scholarship.eligibility}}
-
-              </div>
-
-            </section>
-
-          {{/if}}
-
-          <!-- Required Documents -->
-
-          {{#if scholarship.requiredDocuments}}
-
-            <section class="content-card">
-
-              <h2 class="section-title">
-
-                Required Documents
-
-              </h2>
-
-              <div class="scholarship-description">
-
-                {{scholarship.requiredDocuments}}
-
-              </div>
-
-            </section>
-
-          {{/if}}
-
-          <!-- How To Apply -->
-
-          {{#if scholarship.applicationInstructions}}
-
-            <section class="content-card">
-
-              <h2 class="section-title">
-
-                How to Apply
-
-              </h2>
-
-              <div class="scholarship-description">
-
-                {{scholarship.applicationInstructions}}
-
-              </div>
-
-            </section>
-
-          {{/if}}
-
-          <!-- Source -->
-
-          <section class="content-card">
-
-            <h2 class="section-title">
-
-              Scholarship Source
-
-            </h2>
-
-            <p class="text-muted mb-2">
-
-              This scholarship information is published on ET24Jobs based on
-              information from the original scholarship provider or source.
-
-            </p>
-
-            {{#if scholarship.sourceName}}
-
-              <div class="info-item mb-2">
-
-                <i class="bi bi-link-45deg"></i>
-
-                Source:
-
-                <strong>
-
-                  {{scholarship.sourceName}}
-
-                </strong>
-
-              </div>
-
-            {{/if}}
-
-            {{#if scholarship.sourceUrl}}
-
-              <a
-                href="{{scholarship.sourceUrl}}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-outline-primary mt-2"
-              >
-
-                <i class="bi bi-box-arrow-up-right"></i>
-
-                Visit Original Source
-
-              </a>
-
-            {{/if}}
-
-          </section>
-
-        </div>
-
-        <!-- =====================
+    <!-- =====================
              RIGHT SIDEBAR
         ====================== -->
 
-        <div class="col-lg-4">
+    <div class="col-lg-4">
 
-          <aside class="apply-card">
+      <aside class="apply-card">
 
-            <div class="apply-title">
+        <div class="apply-title">
 
-              Apply for this Scholarship
+          Apply for this Scholarship
+
+        </div>
+
+        <!-- Funding -->
+
+        {{#if scholarship.fundingType}}
+
+          <div class="funding-box mt-3">
+
+            <i class="bi bi-cash-stack"></i>
+
+            <strong>
+
+              Funding
+
+            </strong>
+
+            <br />
+
+            {{scholarship.fundingType}}
+
+          </div>
+
+        {{/if}}
+
+        <!-- Deadline -->
+
+        {{#if scholarship.deadline}}
+
+          <div class="deadline-box">
+
+            <i class="bi bi-calendar-event"></i>
+
+            <strong>
+
+              Application Deadline
+
+            </strong>
+
+            <br />
+
+            {{scholarship.deadline}}
+
+          </div>
+
+        {{/if}}
+
+        <!-- Apply -->
+
+        {{#if scholarship.applicationUrl}}
+
+          <a
+            href="{{scholarship.applicationUrl}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary apply-button"
+          >
+
+            Apply Now
+
+            <i class="bi bi-arrow-right"></i>
+
+          </a>
+
+        {{else}}
+
+          <div class="alert alert-warning">
+
+            Application link is not currently available.
+
+          </div>
+
+        {{/if}}
+
+        <div class="source-note">
+
+          Applicants should verify eligibility, deadlines and application
+          requirements with the official scholarship provider before applying.
+
+        </div>
+
+      </aside>
+
+      <!-- SIDEBAR AD -->
+    </div>
+
+  </div>
+
+  <!-- =========================
+         MIDDLE AD
+    ========================= -->
+
+  <!-- =========================
+         RELATED SCHOLARSHIPS
+    ========================= -->
+
+  <section>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+      <h2 class="section-title mb-0">
+
+        Related Scholarships
+
+      </h2>
+
+      <a href="/scholarships" class="btn btn-outline-primary btn-sm">
+
+        View All Scholarships
+
+      </a>
+
+    </div>
+
+    <div class="row g-4">
+
+      {{#each relatedScholarships}}
+
+        <div class="col-md-6 col-lg-4">
+
+          <article class="related-card">
+
+            <div class="d-flex gap-3">
+
+              <div class="related-icon">
+
+                <i class="bi bi-mortarboard-fill"></i>
+
+              </div>
+
+              <div>
+
+                <a href="/scholarships/{{slug}}" class="related-title">
+
+                  {{title}}
+
+                </a>
+
+                <div class="related-provider mt-1">
+
+                  <i class="bi bi-building"></i>
+
+                  {{providerName}}
+
+                </div>
+
+              </div>
 
             </div>
 
-            <!-- Funding -->
+            <div class="related-info">
 
-            {{#if scholarship.fundingType}}
+              {{#if fieldOfStudy}}
 
-              <div class="funding-box mt-3">
+                <div class="mb-1">
 
-                <i class="bi bi-cash-stack"></i>
+                  <i class="bi bi-book"></i>
 
-                <strong>
+                  {{fieldOfStudy}}
 
-                  Funding
+                </div>
 
-                </strong>
+              {{/if}}
 
-                <br />
+              {{#if studyLevel}}
 
-                {{scholarship.fundingType}}
+                <div class="mb-1">
 
-              </div>
+                  <i class="bi bi-mortarboard"></i>
 
-            {{/if}}
+                  {{studyLevel}}
 
-            <!-- Deadline -->
+                </div>
 
-            {{#if scholarship.deadline}}
+              {{/if}}
 
-              <div class="deadline-box">
+              {{#if deadline}}
 
-                <i class="bi bi-calendar-event"></i>
+                <div>
 
-                <strong>
+                  <i class="bi bi-calendar-event"></i>
 
-                  Application Deadline
+                  Deadline:
 
-                </strong>
+                  {{deadline}}
 
-                <br />
+                </div>
 
-                {{scholarship.deadline}}
+              {{/if}}
 
-              </div>
+            </div>
 
-            {{/if}}
-
-            <!-- Apply -->
-
-            {{#if scholarship.applicationUrl}}
+            <div class="mt-3">
 
               <a
-                href="{{scholarship.applicationUrl}}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary apply-button"
+                href="/scholarships/{{slug}}"
+                class="btn btn-sm btn-outline-primary"
               >
 
-                Apply Now
+                View Scholarship
 
                 <i class="bi bi-arrow-right"></i>
 
               </a>
 
-            {{else}}
-
-              <div class="alert alert-warning">
-
-                Application link is not currently available.
-
-              </div>
-
-            {{/if}}
-
-            <div class="source-note">
-
-              Applicants should verify eligibility, deadlines and application
-              requirements with the official scholarship provider before
-              applying.
-
             </div>
 
-          </aside>
-
-          <!-- SIDEBAR AD -->
-        </div>
-
-      </div>
-
-      <!-- =========================
-         MIDDLE AD
-    ========================= -->
-
-      <!-- =========================
-         RELATED SCHOLARSHIPS
-    ========================= -->
-
-      <section>
-
-        <div class="d-flex justify-content-between align-items-center mb-4">
-
-          <h2 class="section-title mb-0">
-
-            Related Scholarships
-
-          </h2>
-
-          <a href="/scholarships" class="btn btn-outline-primary btn-sm">
-
-            View All Scholarships
-
-          </a>
+          </article>
 
         </div>
 
-        <div class="row g-4">
+      {{/each}}
 
-          {{#each relatedScholarships}}
+    </div>
 
-            <div class="col-md-6 col-lg-4">
+  </section>
 
-              <article class="related-card">
-
-                <div class="d-flex gap-3">
-
-                  <div class="related-icon">
-
-                    <i class="bi bi-mortarboard-fill"></i>
-
-                  </div>
-
-                  <div>
-
-                    <a href="/scholarships/{{slug}}" class="related-title">
-
-                      {{title}}
-
-                    </a>
-
-                    <div class="related-provider mt-1">
-
-                      <i class="bi bi-building"></i>
-
-                      {{providerName}}
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-                <div class="related-info">
-
-                  {{#if fieldOfStudy}}
-
-                    <div class="mb-1">
-
-                      <i class="bi bi-book"></i>
-
-                      {{fieldOfStudy}}
-
-                    </div>
-
-                  {{/if}}
-
-                  {{#if studyLevel}}
-
-                    <div class="mb-1">
-
-                      <i class="bi bi-mortarboard"></i>
-
-                      {{studyLevel}}
-
-                    </div>
-
-                  {{/if}}
-
-                  {{#if deadline}}
-
-                    <div>
-
-                      <i class="bi bi-calendar-event"></i>
-
-                      Deadline:
-
-                      {{deadline}}
-
-                    </div>
-
-                  {{/if}}
-
-                </div>
-
-                <div class="mt-3">
-
-                  <a
-                    href="/scholarships/{{slug}}"
-                    class="btn btn-sm btn-outline-primary"
-                  >
-
-                    View Scholarship
-
-                    <i class="bi bi-arrow-right"></i>
-
-                  </a>
-
-                </div>
-
-              </article>
-
-            </div>
-
-          {{/each}}
-
-        </div>
-
-      </section>
-
-      <!-- =========================
+  <!-- =========================
          BOTTOM AD
     ========================= -->
-    </main>
+</main>
 
-    <!-- =========================
-     FOOTER
-========================= -->
-
-    <footer>
-
-      <div class="container">
-
-        <div class="row g-4">
-
-          <div class="col-md-5">
-
-            <h5>
-
-              ET24Jobs
-
-            </h5>
-
-            <p class="mt-3">
-
-              Find jobs, scholarships and internships in Ethiopia and around the
-              world.
-
-            </p>
-
-          </div>
-
-          <div class="col-md-3">
-
-            <h5>
-
-              Explore
-
-            </h5>
-
-            <ul class="list-unstyled mt-3">
-
-              <li class="mb-2">
-
-                <a href="/jobs">
-
-                  Jobs
-
-                </a>
-
-              </li>
-
-              <li class="mb-2">
-
-                <a href="/scholarships">
-
-                  Scholarships
-
-                </a>
-
-              </li>
-
-              <li>
-
-                <a href="/internships">
-
-                  Internships
-
-                </a>
-
-              </li>
-
-            </ul>
-
-          </div>
-
-          <div class="col-md-4">
-
-            <h5>
-
-              ET24Jobs
-
-            </h5>
-
-            <p class="mt-3">
-
-              Helping students and job seekers discover new opportunities.
-
-            </p>
-
-          </div>
-
-        </div>
-
-        <hr class="border-secondary my-4" />
-
-        <div class="text-center">
-
-          <small>
-
-            © 2026 ET24Jobs. All rights reserved.
-
-          </small>
-
-        </div>
-
-      </div>
-
-    </footer>
-
-    <!-- =========================
+<!-- =========================
      SHARE SCRIPT
 ========================= -->
 
-    <script>
+<script>
 
-      function shareScholarship() { if (navigator.share) { navigator.share({
-      title: "{{scholarship.title}}
-      | ET24Jobs", text: "Check out this scholarship opportunity on ET24Jobs.",
-      url: window.location.href }); } else { navigator.clipboard.writeText(
-      window.location.href ); alert( "Scholarship link copied to clipboard." );
-      } }
+  function shareScholarship() { if (navigator.share) { navigator.share({ title:
+  "{{scholarship.title}}
+  | ET24Jobs", text: "Check out this scholarship opportunity on ET24Jobs.", url:
+  window.location.href }); } else { navigator.clipboard.writeText(
+  window.location.href ); alert( "Scholarship link copied to clipboard." ); } }
 
-    </script>
-
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ></script>
-
-  </body>
-
-</html>
+</script>

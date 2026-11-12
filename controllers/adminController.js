@@ -57,7 +57,7 @@ exports.dashboard = async (req, res) => {
       recentJobs: recentJobs.map((row) => row.toJSON()),
       recentScholarships: recentScholarships.map((row) => row.toJSON()),
       recentInternships: recentInternships.map((row) => row.toJSON()),
-      adminUsername: req.session.adminUsername || "Dere-boy",
+      adminUsername: req.session && req.session.adminUsername,
     });
   } catch (error) {
     console.log("Unable to load dashboard");
@@ -110,7 +110,7 @@ exports.listJobs = async (req, res) => {
       newUrl: "/jobs/post",
       statuses: STATUSES,
       items: jobs.map((row) => toListItem(row, "jobs")),
-      adminUsername: req.session.adminUsername || "Dere-boy",
+      adminUsername: req.session && req.session.adminUsername,
     });
   } catch (error) {
     console.error(error);
@@ -133,7 +133,7 @@ exports.listScholarships = async (req, res) => {
       newUrl: null,
       statuses: STATUSES,
       items: scholarships.map((row) => toListItem(row, "scholarships")),
-      adminUsername: req.session.adminUsername || "Dere-boy",
+      adminUsername: req.session && req.session.adminUsername,
     });
   } catch (error) {
     console.error(error);
@@ -156,7 +156,7 @@ exports.listInternships = async (req, res) => {
       newUrl: null,
       statuses: STATUSES,
       items: internships.map((row) => toListItem(row, "internships")),
-      adminUsername: req.session.adminUsername || "Dere-boy",
+      adminUsername: req.session && req.session.adminUsername,
     });
   } catch (error) {
     console.error(error);
