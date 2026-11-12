@@ -1,0 +1,79 @@
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar navbar-expand-lg">
+
+  <div class="container">
+
+    <a class="navbar-brand" href="/">
+      ET24<span>Jobs</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+
+          <a class="nav-link" href="/">
+            Home
+          </a>
+
+        </li>
+
+        <li class="nav-item">
+
+          <a class="nav-link {{#ifCond activeNav '===' 'jobs'}}active{{/ifCond}}" href="/jobs">
+            Jobs
+          </a>
+
+        </li>
+
+        <li class="nav-item">
+
+          <a class="nav-link {{#ifCond activeNav '===' 'scholarships'}}active{{/ifCond}}" href="/scholarships">
+            Scholarships
+          </a>
+
+        </li>
+
+        <li class="nav-item">
+
+          <a class="nav-link {{#ifCond activeNav '===' 'internships'}}active{{/ifCond}}" href="/internships">
+            Internships
+          </a>
+
+        </li>
+
+        <li class="nav-item">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/login">
+              Admin Login
+            </a>
+          </li>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</nav>

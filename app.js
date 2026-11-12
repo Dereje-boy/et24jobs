@@ -1,19 +1,34 @@
 //mendatory imports
 require("dotenv").config();
 const express = require("express");
-const { engine } = require("express-handlebars");
 const session = require("express-session");
-const cors = require("cors");
+const connectEnsureLogin = require("connect-ensure-login");
+const { engine } = require("express-handlebars");
+const path = require("path");
+const fs = require("fs");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
-app.use(cors());
 
-// --- Deadline date helpers ------------------------------------------------
+// Bootstrap
+app.use(
+  "/js/bootstrap.min.js",
+  express.static("node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"),
+);
+app.use(
+  "/bootstrap-slider/js/bootstrap-slider.min.js",
+  express.static("node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"),
+);
+app.use(
+  "/bootstrap-slider/css/bootstrap-slider.min.css",
+  express.static("node_modules/bootstrap-slider/dist/bootstrap-slider.min.css"),
+);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-// Normalizes a deadline ("YYYY-MM-DD" string or Date) to local midnight so
-// DATEONLY values (parsed as UTC midnight) don't shift the calendar day.
 const normalizeDate = (value) => {
   if (!value) return null;
   if (value instanceof Date) {
@@ -36,216 +51,216 @@ const today = () => {
   return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 };
 
-app.engine(
-  "handlebars",
-  engine({
-    extname: ".handlebars",
+const hbEngine = engine({
+  extname: ".handlebars",
+  defaultLayout: "main",
+  helpers: {
+    eq: (a, b) => a === b,
 
-    helpers: {
-      eq: (a, b) => a === b,
-
-      // Loose equality for comparing submitted form strings with model
-      // numbers (e.g. formData.categoryId "3" vs category.id 3).
-      eqLoose: (a, b) => String(a) === String(b),
-      ifEquals: function (a, b, options) {
-        return a === b ? options.fn(this) : options.inverse(this);
-      },
-
-      // Returns a unless it is empty/null/undefined, then b. Used by the
-      // edit form to prefer submitted formData (after a validation failure)
-      // over the stored job values (first render).
-      coalesce: (a, b) => (a === undefined || a === null || a === "" ? b : a),
-
-      // Safe-to-render text for inline JS attributes (HTML entity escaping
-      // is applied by Handlebars itself for attribute values).
-      // Used by admin/entityList.handlebars for the delete confirm().
-      safeConfirmText: (value) =>
-        String(value)
-          .replace(/\\/g, "")
-          .replace(/['"`]/g, "")
-          .replace(/[\r\n]+/g, " "),
-
-      // JSON.stringify for templates. Handlebars escapes the output, so it
-      // is safe inside <script> tags: "</script>" in a value becomes
-      // \u003C\u002Fscript\u003E and cannot terminate the script block.
-      json: (value) => JSON.stringify(value ?? null),
-
-      // True when the deadline date has passed (date-only comparison)
-      isExpired: (deadline) => {
-        const d = normalizeDate(deadline);
-        return d !== null && today() > d;
-      },
-
-      // Whole days between today and the deadline (0 = closes today)
-      daysRemaining: (deadline) => {
-        const d = normalizeDate(deadline);
-        return d === null ? 0 : Math.round((d - today()) / DAY_MS);
-      },
-
-      // Formats a deadline as e.g. "Sep 25, 2026"
-      formatDate: (deadline) => {
-        const d = normalizeDate(deadline);
-        return d === null
-          ? ""
-          : d.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            });
-      },
-
-      // Human-readable file size: 1536 -> "1.5 KB"
-      formatBytes: (bytes) => {
-        const n = Number(bytes) || 0;
-        if (n < 1024) return `${n} B`;
-
-        const units = ["KB", "MB", "GB", "TB"];
-        let value = n / 1024;
-        let unit = 0;
-        while (value >= 1024 && unit < units.length - 1) {
-          value /= 1024;
-          unit++;
-        }
-        return `${value < 10 ? value.toFixed(1) : Math.round(value)} ${units[unit]}`;
-      },
+    eqLoose: (a, b) => String(a) === String(b),
+    ifEquals: function (a, b, options) {
+      return a === b ? options.fn(this) : options.inverse(this);
     },
-  }),
-);
 
-app.set("view engine", "handlebars");
-app.set("views", "./views");
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static("public"));
+    coalesce: (a, b) =>
+      (a === undefined || a === null || a === "" ? b : a),
 
-// TEMPORARY cloud-deployment helper: /db-check tests MySQL hosts/credentials
-// from inside this server. Mounted BEFORE the session middleware on purpose -
-// the session store is MySQL-backed, so this page must still load while the
-// database is unreachable. Remove this line (and routes/dbCheckRoute.js) once
-// the app is connected; the route is disabled unless DB_CHECK_TOKEN is set.
-app.use("/db-check", require("./routes/dbCheckRoute.js"));
+    safeConfirmText: (value) =>
+      String(value)
+        .replace(/\\/g, "")
+        .replace(/['"`]/g, "")
+        .replace(/[\r\n]+/g, " "),
 
-// --- Admin session management ----------------------------------------------
-// Load all models first: connect-session-sequelize (created with
-// table: 'sessions') looks up the model named "Session" on the Sequelize
-// instance at construction time, so it must already be defined.
-require("./models");
+    json: (value) => JSON.stringify(value ?? null),
 
-// Sessions live in the MySQL 'sessions' table (same DB as the app), so
-// logins survive server restarts. Expired rows are pruned by the store
-// every 15 minutes.
-const sessionStore = new SequelizeStore({
-  db: require("./config/database"),
-  table: "sessions",
+    isExpired: (deadline) => {
+      const d = normalizeDate(deadline);
+      return d !== null && today() > d;
+    },
+
+    daysRemaining: (deadline) => {
+      const d = normalizeDate(deadline);
+      return d === null ? 0 : Math.round((d - today()) / DAY_MS);
+    },
+
+    formatDate: (deadline) => {
+      const d = normalizeDate(deadline);
+      return d === null
+        ? ""
+        : d.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
+    },
+
+    formatBytes: (bytes) => {
+      const n = Number(bytes) || 0;
+      if (n < 1024) return `${n} B`;
+
+      const units = ["KB", "MB", "GB", "TB"];
+      let value = n / 1024;
+      let unit = 0;
+      while (value >= 1024 && unit < units.length - 1) {
+        value /= 1024;
+        unit++;
+      }
+      return `${value < 10 ? value.toFixed(1) : Math.round(value)} ${units[unit]}`;
+    },
+
+    ifCond: function (v1, op, v2, opts) {
+      if (op === "===" && v1 === v2) {
+        return opts.fn(this);
+      }
+      if (op === "==" && v1 == v2) {
+        return opts.fn(this);
+      }
+      if (opts.inverse) {
+        return opts.inverse(this);
+      }
+      return opts.fn(this);
+    },
+  },
 });
 
-// Fail fast at boot if the store could not resolve the Session model
-// (models not loaded before store construction) instead of failing later
-// with "Cannot read properties of undefined (reading 'findCreateFind')"
-// on the first login.
-if (!sessionStore.sessionModel) {
+if (!hbEngine.handlebars) {
   throw new Error(
-    "Session store could not resolve the 'Session' model. require('./models') must run before the session middleware is configured.",
+    "express-handlebars did not expose hbEngine.handlebars on this version",
   );
 }
 
+hbEngine.handlebars.registerPartial(
+  "navbar",
+  fs.readFileSync("./views/partials/navbar.handlebars", "utf8"),
+);
+hbEngine.handlebars.registerPartial(
+  "footer",
+  fs.readFileSync("./views/partials/footer.handlebars", "utf8"),
+);
+
+app.engine("handlebars", hbEngine);
+
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
+app.set("port", process.env.PORT || 5000);
+
+// Add Bootstrap
+app.use(
+  "/css/bootstrap/bootstrap.min.css",
+  express.static(
+    path.join(__dirname, "node_modules/bootstrap/dist/css/bootstrap.min.css"),
+  ),
+);
+app.use(
+  "/css/bootstrap/bootstrap.min.css",
+  express.static(
+    path.join(__dirname, "node_modules/bootstrap/dist/css/bootstrap.min.css"),
+  ),
+);
+
+// call session
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "dev-only-insecure-secret",
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: "auto",
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    },
+    secret: process.env.SESSION_SECRET || "superSecretCookieSecret",
+    resave: true,
+    saveUninitialized: true,
+    store: new SequelizeStore({ db: require("./config/database") }),
+    cookie: { maxAge: 24 * 60 * 60 * 1000, secure: false },
   }),
 );
 
-// Flash messages: controllers call req.flash(type, text) before a redirect
-// and the page the redirect leads to renders res.locals.flash once.
+registerMiddleware(app, require("./utils/appUtils"));
+
+// flash messages
+app.use(connectEnsureLogin.ensureLoggedIn());
+
+app.use("/job/delete", userMiddleware.redirectWithFlash);
+app.use("/job/view/:id", userMiddleware.redirectWithFlash);
+app.use("/job/edit/:id", userMiddleware.redirectWithFlash);
+app.use("/scholarship/:id", userMiddleware.redirectWithFlash);
+app.use("/scholarship/delete/:id", userMiddleware.redirectWithFlash);
+app.use("/scholarship/edit/:id", userMiddleware.redirectWithFlash);
+app.use("/internship/:id", userMiddleware.redirectWithFlash);
+app.use("/internship/delete/:id", userMiddleware.redirectWithFlash);
+app.use("/internship/edit/:id", userMiddleware.redirectWithFlash);
+app.use("/announcements/:id", userMiddleware.redirectWithFlash);
+
+// add as general middleware - `/admin/login`, `/admin/auth`, `/admin/logout`
+app.use("/admin/login", adminMiddleware.filterLoginPage);
+app.use("/admin/auth", adminMiddleware.filterAuthPage);
+app.use("/admin/logout", adminMiddleware.filterLogoutPage);
+
+// Flash messages
 app.use(require("./Middlewares/flash"));
 
-// Dev helper so tests can fake a logged-in admin session without touching
-// the real session store. Only honors the header when the real session is
-// not populated for the request.
+// add as general middleware
+app.use("/", generalMiddleware.filterPage);
+
+// load user
+app.use("/", userMiddleware.loadUser);
+
+// require admin - `/admin/home`, `/admin/add-job`, `/admin/add-scholarship` etc
+app.use("/admin/home", connectEnsureLogin.ensureLoggedIn());
+app.use("/admin/add-job", connectEnsureLogin.ensureLoggedIn());
+app.use("/admin/add-scholarship", connectEnsureLogin.ensureLoggedIn());
+app.use("/admin/add-internship", connectEnsureLogin.ensureLoggedIn());
+app.use("/admin/add-announcements", connectEnsureLogin.ensureLoggedIn());
+
+// Call the default connectEnsureLogin.ensureLoggedIn to ensure an user is
+// authenticated before registering for an account
+app.use(
+  "/register",
+  connectEnsureLogin.ensureLoggedIn({
+    redirectTo: "/login/register",
+  }),
+);
+
+// Add the pageCss middleware
 app.use((req, res, next) => {
-  if (req.headers["x-mock-session"] && !req.session?.adminId) {
-    try {
-      const patch = JSON.parse(req.headers["x-mock-session"]);
-      req.session = req.session || {};
-      Object.assign(req.session, patch);
-    } catch (error) {
-      /* ignore malformed mock header */
-    }
-  }
+  res.locals.pageCss = "site";
   next();
 });
 
-// Expose login state to all views: admin navbar/buttons on public pages
-// render only when an admin is logged in.
-app.use((req, res, next) => {
-  res.locals.adminLoggedIn = Boolean(req.session && req.session.adminId);
-  next();
+app.set("port", process.env.PORT || 5000);
+
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/", home);
+app.use("/job", jobs);
+app.use("/scholarship", scholarships);
+app.use("/internship", internships);
+app.use("/announcements", announcements);
+app.use("/contact", contactUs);
+app.use("/unsubscribe", handler);
+
+app.use("/admin", admin);
+
+// Assets
+app.get("/assets/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", req.params[0]));
 });
 
-// Inject the shared job validation constants into every view as
-// window.JOB_VALIDATION. The client-side validator
-// (public/js/jobs/validation.js) and the dropzone scripts read their limits
-// from here, so frontend and backend rules share one source of truth
-// (Middlewares/jobValidationConstants.js).
-app.use((req, res, next) => {
-  res.locals.jobValidationJson = require("./Middlewares/jobValidationConstants");
-  next();
-});
-
-//Routes
-const jobRoute = require("./routes/jobRoute.js");
-const scholarshipRoute = require("./routes/scholarshipRoute.js");
-const internshipRoute = require("./routes/internshipRoute.js");
-const informationalPageRoute = require("./routes/informationalPages.js");
-const adminRoute = require("./routes/adminRoute.js");
-const homeController = require("./controllers/homecontroller.js");
-const {
-  notFoundHandler,
-  globalErrorHandler,
-} = require("./Middlewares/errorHandlers.js");
-
-app.use("/", informationalPageRoute);
-
-// Associate the routes with their respective paths
-app.use("/jobs", jobRoute);
-app.use("/scholarships", scholarshipRoute);
-app.use("/internships", internshipRoute);
-app.use("/admin", adminRoute);
-
-app.get("/", homeController.home);
-app.get("/error", (req, res) => {
-  throw new Error("This is a test error for demonstration purposes.");
-});
-
-// 404 handler - must be registered after all routes
-app.use(notFoundHandler);
-
-// Global error handler - must be registered last
-app.use(globalErrorHandler);
-
-const PORT = process.env.PORT || 3000;
-
-// Background job: auto-expire published jobs past their deadline. Runs a
-// catch-up sweep at boot, then every 12 hours via a timer that lives inside
-// this process - jobs created in the future are picked up automatically,
-// no restarts needed (see Middlewares/expireJobs.js).
-require("./Middlewares/expireJobs").startJobExpirySweeper();
-
-module.exports = app;
-
-// Keep the boot behavior when run directly.
-if (require.main === module) {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+// error handling
+app.use(function (err, req, res) {
+  const statusCode = err.status;
+  const errCode = err.status || 500;
+  const pkgJson = require(path.join(__dirname, "package.json"));
+  res.status(errCode).render("error", {
+    message: err.message,
+    error: err,
+    app: pkgJson.name,
+    status: errCode,
   });
+});
+
+app.listen(app.get("port"), () => {
+  console.log("Server reached. Running on port", app.get("port"));
+  console.log("Press Ctrl + C to stop");
+});
+
+// global middleware configuration
+function registerMiddleware(app, utils) {
+  app.use(utils.perPage());
+  app.use(utils.requireAdmin());
+  app.use(utils.requireUser());
 }
