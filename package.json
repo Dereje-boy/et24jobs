@@ -5,8 +5,10 @@
   "license": "ISC",
   "author": "Dere-Boy",
   "type": "commonjs",
-  "main": "app.js",
-  "scripts": {},
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "connect-session-sequelize": "^8.0.6",
